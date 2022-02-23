@@ -4,7 +4,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
-import 'package:record_cataloguer/model/album_model.dart';
+import 'package:record_cataloguer/model/album.dart';
 
 void main() => runApp(MyApp());
 
@@ -18,13 +18,17 @@ class _MyAppState extends State<MyApp>{
 
   List<AlbumModel> albums = [
     AlbumModel(
-        albumImage: Image.asset('images/diamond.png'),
+        //albumImage: Image.asset('images/diamond.png'),
+        albumImage: 'diamond.png',
         albumName: 'first album', albumPrice: 10.00,
+        albumQuantity: 1,
         upc: BigInt.from(123456)
     ),
     AlbumModel(
-        albumImage: Image.asset('images/diamond.png'),
-        albumName: 'second album', albumPrice: 10.00,
+      //  albumImage: Image.asset('images/diamond.png'),
+        albumImage: 'diamond.png',
+        albumName: 'second album', albumPrice: 15.00,
+        albumQuantity: 5,
         upc: BigInt.from(123456)
     ),
   ];
@@ -33,15 +37,32 @@ class _MyAppState extends State<MyApp>{
     // TODO: implement build
     return MaterialApp(
       title: 'Album Cataloguer',
-      home: Column(
-        children: albums.map((album) {
-          return Row(
-            children: [
-              Text(album.albumName),
-              Text(album.albumPrice.toString()),
-            ],
-          );
-        }).toList(),
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text('Record Cataloguer!'),
+        ),
+        body: Column(
+          children: albums.map((album) {
+            return Card(
+              child: Row(
+                children: [
+                  Container(
+                  //  child: Image.asset(album.albumImage),
+                    // todo: Add image
+                    child: Text('I am an IMAGE!!!!'),
+                  ),
+                  Column(
+                    children: [
+                      Text(album.albumName),
+                      Text('\$' + album.albumPrice.toString()),
+                    ],
+                  ),
+                  Text('x' + album.albumQuantity.toString())
+                ],
+              ),
+            );
+          }).toList(),
+        ),
       ),
     );
   }
