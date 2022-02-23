@@ -13,28 +13,53 @@ class MyApp extends StatefulWidget {
   _MyAppState createState() => _MyAppState();
 }
 
-
-class _MyAppState extends State<MyApp>{
-
+class _MyAppState extends State<MyApp> {
   List<AlbumModel> albums = [
     AlbumModel(
-        //albumImage: Image.asset('images/diamond.png'),
+        // albumImage: Image.asset('images/diamond.png'),
         albumImage: 'diamond.png',
-        albumName: 'first album', albumPrice: 10.00,
+        albumName: 'first album',
+        albumPrice: 10.00,
         albumQuantity: 1,
-        upc: BigInt.from(123456)
-    ),
+        upc: BigInt.from(123456)),
     AlbumModel(
-      //  albumImage: Image.asset('images/diamond.png'),
+        //  albumImage: Image.asset('images/diamond.png'),
         albumImage: 'diamond.png',
-        albumName: 'second album', albumPrice: 15.00,
+        albumName: 'second album',
+        albumPrice: 15.00,
         albumQuantity: 5,
-        upc: BigInt.from(123456)
-    ),
+        upc: BigInt.from(123456)),
+    AlbumModel(
+        // albumImage: Image.asset('images/diamond.png'),
+        albumImage: 'diamond.png',
+        albumName: 'third album',
+        albumPrice: 25.00,
+        albumQuantity: 1,
+        upc: BigInt.from(123456)),
+    AlbumModel(
+        //  albumImage: Image.asset('images/diamond.png'),
+        albumImage: 'diamond.png',
+        albumName: 'fourth album',
+        albumPrice: 35.00,
+        albumQuantity: 5,
+        upc: BigInt.from(123456)),
+    AlbumModel(
+        // albumImage: Image.asset('images/diamond.png'),
+        albumImage: 'diamond.png',
+        albumName: 'fifth album',
+        albumPrice: 20.00,
+        albumQuantity: 1,
+        upc: BigInt.from(123456)),
+    AlbumModel(
+        //  albumImage: Image.asset('images/diamond.png'),
+        albumImage: 'diamond.png',
+        albumName: 'sixth album',
+        albumPrice: 25.00,
+        albumQuantity: 5,
+        upc: BigInt.from(123456)),
   ];
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return MaterialApp(
       title: 'Album Cataloguer',
       home: Scaffold(
@@ -43,22 +68,34 @@ class _MyAppState extends State<MyApp>{
         ),
         body: Column(
           children: albums.map((album) {
-            return Card(
-              child: Row(
-                children: [
-                  Container(
-                  //  child: Image.asset(album.albumImage),
-                    // todo: Add image
-                    child: Text('I am an IMAGE!!!!'),
-                  ),
-                  Column(
-                    children: [
-                      Text(album.albumName),
-                      Text('\$' + album.albumPrice.toString()),
-                    ],
-                  ),
-                  Text('x' + album.albumQuantity.toString())
-                ],
+            return Container(
+              height: 100,
+              child: Card(
+                elevation: 20,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Container(
+                      //  child: Image(),
+                      // todo: Add image
+                      child: const Text('I am an IMAGE!!!!'),
+                    ),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(album.albumName,
+                            style: const TextStyle(
+                                fontSize: 20, fontWeight: FontWeight.bold)),
+                        Text('\$' + album.albumPrice.toString()),
+                      ],
+                    ),
+                    Container(
+                        width: 100,
+                        alignment: Alignment.centerRight,
+                        child: Text('x' + album.albumQuantity.toString()))
+                  ],
+                ),
               ),
             );
           }).toList(),
