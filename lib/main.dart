@@ -4,6 +4,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
+import 'package:intl/intl.dart';
 import 'package:record_cataloguer/model/album.dart';
 
 void main() => runApp(MyApp());
@@ -21,7 +22,8 @@ class _MyAppState extends State<MyApp> {
         albumName: 'first album',
         albumPrice: 10.00,
         albumQuantity: 1,
-        upc: BigInt.from(123456)),
+        upc: BigInt.from(123456),
+        scannedDate: DateTime.now()),
     AlbumModel(
         //  albumImage: Image.asset('images/diamond.png'),
         albumImage: 'diamond.png',
@@ -87,13 +89,28 @@ class _MyAppState extends State<MyApp> {
                         Text(album.albumName,
                             style: const TextStyle(
                                 fontSize: 20, fontWeight: FontWeight.bold)),
-                        Text('\$' + album.albumPrice.toString()),
+                        Text(DateFormat.yMMMd().format(DateTime.now())),
+                        Container(
+                            decoration: BoxDecoration(
+                              border: Border.all(color: Colors.blueGrey, width: 2),
+                              borderRadius: const BorderRadius.all(Radius.elliptical(1, 10)),
+                            ),
+                            child: Text(
+                              '\$${album.albumPrice}',
+                              style: const TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                  decoration: TextDecoration.underline),
+                            )
+                        ),
                       ],
                     ),
                     Container(
                         width: 100,
                         alignment: Alignment.centerRight,
-                        child: Text('x' + album.albumQuantity.toString()))
+                        child: Text('x${album.albumQuantity}', style: const TextStyle(fontSize: 20),
+                        )
+                    )
                   ],
                 ),
               ),
