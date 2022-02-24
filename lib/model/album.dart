@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 
 class AlbumModel {
   // todo: Keep as image or make String for albumImage
@@ -7,6 +6,7 @@ class AlbumModel {
   late double albumPrice;
   late int albumQuantity;
   late BigInt upc;
+  late DateTime? scannedDate;
 
   AlbumModel({
     required this.albumImage,
@@ -14,5 +14,6 @@ class AlbumModel {
     required this.albumPrice,
     required this.albumQuantity,
     required this.upc,
+    this.scannedDate,
   });
 }
