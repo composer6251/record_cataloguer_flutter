@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:intl/intl.dart';
 import 'package:record_cataloguer/model/album.dart';
+import 'package:record_cataloguer/widgets/album_widget.dart';
 
 void main() => runApp(MyApp());
 
@@ -68,60 +69,12 @@ class _MyAppState extends State<MyApp> {
         appBar: AppBar(
           title: const Text('Record Cataloguer!'),
         ),
-        body: Column(
-          children: albums.map((album) {
-            return Container(
-              height: 100,
-              child: Card(
-                elevation: 20,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Container(
-                      width: 100.00,
-                      height: 100.00,
-                      decoration: const BoxDecoration(
-                        image: DecorationImage(
-                        image: AssetImage(
-                          'images/cat-stevens.jpeg'
-                        ),
-                      ),
-                     ),
-                    ),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Text(album.albumName,
-                            style: const TextStyle(
-                                fontSize: 20, fontWeight: FontWeight.bold)),
-                        Text(DateFormat.yMMMd().format(DateTime.now())),
-                        Container(
-                            decoration: BoxDecoration(
-                              border: Border.all(color: Colors.blueGrey, width: 2),
-                              borderRadius: const BorderRadius.all(Radius.elliptical(1, 10)),
-                            ),
-                            child: Text(
-                              '\$${album.albumPrice}',
-                              style: const TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
-                                  decoration: TextDecoration.underline),
-                            )
-                        ),
-                      ],
-                    ),
-                    Container(
-                        width: 100,
-                        alignment: Alignment.centerRight,
-                        child: Text('x${album.albumQuantity}', style: const TextStyle(fontSize: 20),
-                        )
-                    )
-                  ],
-                ),
-              ),
-            );
-          }).toList(),
+        body: SingleChildScrollView(
+          child: Column(
+            children: albums.map((album) {
+              AlbumWidget(album)
+            }).toList(),
+          ),
         ),
       ),
     );
