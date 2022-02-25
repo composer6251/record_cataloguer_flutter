@@ -75,12 +75,18 @@ class _MyAppState extends State<MyApp> {
               child: Card(
                 elevation: 20,
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Container(
-                      //  child: Image(),
-                      // todo: Add image
-                      child: const Text('I am an IMAGE!!!!'),
+                      width: 100.00,
+                      height: 100.00,
+                      decoration: const BoxDecoration(
+                        image: DecorationImage(
+                        image: AssetImage(
+                          'images/cat-stevens.jpeg'
+                        ),
+                      ),
+                     ),
                     ),
                     Column(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
