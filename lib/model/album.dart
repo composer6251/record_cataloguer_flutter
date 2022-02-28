@@ -2,6 +2,7 @@
 class AlbumModel {
   // todo: Keep as image or make String for albumImage
   late String albumImage;
+  late String albumArtist;
   late String albumName;
   late double albumPrice;
   late int albumQuantity;
@@ -10,6 +11,7 @@ class AlbumModel {
 
   AlbumModel({
     required this.albumImage,
+    required this.albumArtist,
     required this.albumName,
     required this.albumPrice,
     required this.albumQuantity,
