@@ -6,78 +6,32 @@ import 'package:flutter/services.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:intl/intl.dart';
 import 'package:record_cataloguer/model/album.dart';
-import 'package:record_cataloguer/widgets/album_widget.dart';
+import 'package:record_cataloguer/widgets/album_list_view.dart';
+import 'package:record_cataloguer/widgets/album_list_widget.dart';
 
 void main() => runApp(MyApp());
 
-class MyApp extends StatefulWidget {
-  @override
-  _MyAppState createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  List<AlbumModel> albums = [
-    AlbumModel(
-        // albumImage: Image.asset('images/diamond.png'),
-        albumImage: 'diamond.png',
-        albumName: 'first album',
-        albumPrice: 10.00,
-        albumQuantity: 1,
-        upc: BigInt.from(123456),
-        scannedDate: DateTime.now()),
-    AlbumModel(
-        //  albumImage: Image.asset('images/diamond.png'),
-        albumImage: 'diamond.png',
-        albumName: 'second album',
-        albumPrice: 15.00,
-        albumQuantity: 5,
-        upc: BigInt.from(123456)),
-    AlbumModel(
-        // albumImage: Image.asset('images/diamond.png'),
-        albumImage: 'diamond.png',
-        albumName: 'third album',
-        albumPrice: 25.00,
-        albumQuantity: 1,
-        upc: BigInt.from(123456)),
-    AlbumModel(
-        //  albumImage: Image.asset('images/diamond.png'),
-        albumImage: 'diamond.png',
-        albumName: 'fourth album',
-        albumPrice: 35.00,
-        albumQuantity: 5,
-        upc: BigInt.from(123456)),
-    AlbumModel(
-        // albumImage: Image.asset('images/diamond.png'),
-        albumImage: 'diamond.png',
-        albumName: 'fifth album',
-        albumPrice: 20.00,
-        albumQuantity: 1,
-        upc: BigInt.from(123456)),
-    AlbumModel(
-        //  albumImage: Image.asset('images/diamond.png'),
-        albumImage: 'diamond.png',
-        albumName: 'sixth album',
-        albumPrice: 25.00,
-        albumQuantity: 5,
-        upc: BigInt.from(123456)),
-  ];
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Album Cataloguer',
-      home: Scaffold(
+    return const MaterialApp(
+      title: 'Record Cataloguer',
+      home: MyHomePage(),
+    );
+  }
+}
+
+class MyHomePage extends StatelessWidget {
+  const MyHomePage({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
         appBar: AppBar(
           title: const Text('Record Cataloguer!'),
         ),
-        body: SingleChildScrollView(
-          child: Column(
-            children: albums.map((album) {
-              AlbumWidget(album)
-            }).toList(),
-          ),
-        ),
-      ),
-    );
+        body: const AlbumListView(),
+        );
   }
 }
 
