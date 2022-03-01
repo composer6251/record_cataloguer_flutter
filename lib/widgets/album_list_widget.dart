@@ -15,7 +15,7 @@ class AlbumListWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 300,
+      height: 325,
       child: ListView.builder(// Listview(children[]) does NOT create children lazily. Listview.builder() does create Lazily.
         itemBuilder: (context, index) {
           return Card(
@@ -59,6 +59,7 @@ class AlbumListWidget extends StatelessWidget {
                   ],
                 ),
                 Container(
+                    padding: EdgeInsets.only(right: 20),
                     width: 100,
                     alignment: Alignment.centerRight,
                     child: Text('x${albums[index].albumQuantity}', style: const TextStyle(fontSize: 20),
