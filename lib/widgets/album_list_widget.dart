@@ -14,9 +14,10 @@ class AlbumListWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children:
-        albums.map((album) {
+    return Container(
+      height: 300,
+      child: ListView.builder(// Listview(children[]) does NOT create children lazily. Listview.builder() does create Lazily.
+        itemBuilder: (context, index) {
           return Card(
             elevation: 20,
             child: Row(
@@ -38,7 +39,7 @@ class AlbumListWidget extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Text(album.albumName,
+                    Text(albums[index].albumName,
                         style: const TextStyle(
                             fontSize: 20, fontWeight: FontWeight.bold)),
                     Text(DateFormat.yMMMd().format(DateTime.now())),
@@ -48,7 +49,7 @@ class AlbumListWidget extends StatelessWidget {
                           borderRadius: const BorderRadius.all(Radius.elliptical(1, 10)),
                         ),
                         child: Text(
-                          '\$${album.albumPrice}',
+                          '\$${albums[index].albumPrice}',
                           style: const TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
@@ -60,13 +61,15 @@ class AlbumListWidget extends StatelessWidget {
                 Container(
                     width: 100,
                     alignment: Alignment.centerRight,
-                    child: Text('x${album.albumQuantity}', style: const TextStyle(fontSize: 20),
+                    child: Text('x${albums[index].albumQuantity}', style: const TextStyle(fontSize: 20),
                     )
                 )
               ],
             ),
           );
-        }).toList(),
+        },
+        itemCount: albums.length,
+      ),
     );
   }
 }

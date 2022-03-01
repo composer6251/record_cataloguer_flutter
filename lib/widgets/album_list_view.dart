@@ -111,13 +111,11 @@ class _AlbumListViewState extends State<AlbumListView> {
   ];
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
+    return Column(
         children: [
           AddAlbumWidget(),
           AlbumListWidget(albums),
         ],
-      ),
-    );
+      );
   }
 }
