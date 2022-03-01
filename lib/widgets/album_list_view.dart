@@ -111,11 +111,14 @@ class _AlbumListViewState extends State<AlbumListView> {
   ];
   @override
   Widget build(BuildContext context) {
-    return Column(
-        children: [
-          AddAlbumWidget(),
-          AlbumListWidget(albums),
-        ],
-      );
+    return Container(
+      margin: const EdgeInsets.only(left: 20, right: 20),
+      child: Column(
+          children: [
+            AddAlbumWidget(),
+            AlbumListWidget(albums),
+          ],
+        ),
+    );
   }
 }

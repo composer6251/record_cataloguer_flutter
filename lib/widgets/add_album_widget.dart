@@ -11,19 +11,28 @@ class AddAlbumWidget extends StatelessWidget {
   final albumNameController = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.only(left: 20, right: 20),
-      child: Column(
-        children: [
-          TextField(
-            controller: artistNameController,
+    return Column(
+      children: [
+        TextField(
+          decoration: const InputDecoration(
+              labelText: 'Artist',
+              floatingLabelStyle: TextStyle(
+              fontFamily: 'Times New Roman'
+          )),
+          controller: artistNameController,
+        ),
+        TextField(
+          decoration: const InputDecoration(
+            labelText: 'Album',
+            floatingLabelStyle: TextStyle(
+                fontFamily: 'Calibri',
+            ),
+            floatingLabelBehavior: FloatingLabelBehavior.auto
           ),
-          TextField(
-            controller: albumNameController,
-          ),
-          ElevatedButton(onPressed: () => print("New album entered"), child: Text("Submit"))
-        ],
-      ),
+          controller: albumNameController,
+        ),
+        ElevatedButton(onPressed: () => print("New album entered"), child: Text("Submit"))
+      ],
     );
   }
 }
