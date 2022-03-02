@@ -49,7 +49,7 @@ class AlbumListWidget extends StatelessWidget {
                           borderRadius: const BorderRadius.all(Radius.elliptical(1, 10)),
                         ),
                         child: Text(
-                          '\$${albums[index].albumPrice}',
+                          '\$${albums[index].albumPrice.toStringAsFixed(2)}',
                           style: const TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.bold,

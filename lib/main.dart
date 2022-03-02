@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:intl/intl.dart';
 import 'package:record_cataloguer/model/album.dart';
+import 'package:record_cataloguer/widgets/add_album_widget.dart';
 import 'package:record_cataloguer/widgets/album_list_view.dart';
 import 'package:record_cataloguer/widgets/album_list_widget.dart';
 
@@ -23,14 +24,34 @@ class MyApp extends StatelessWidget {
 
 class MyHomePage extends StatelessWidget {
   const MyHomePage({Key? key}) : super(key: key);
-
+  
+  void startAddNewAlbum(BuildContext ctx){
+    showModalBottomSheet(context: ctx, builder: (_) {
+      return AddAlbumWidget();
+    });
+  }
+  
   @override
   Widget build(BuildContext context) {
+    // Can tell if the keyboard is currently on screen
+    final isKeyboardOpen = MediaQuery.of(context).viewInsets.bottom != 0;
+
     return Scaffold(
+      // keep the keyboard from causing overflow when displayed
+      resizeToAvoidBottomInset: false,
         appBar: AppBar(
+          actions: <Widget>[
+            IconButton(
+              // todo: Route to add_album widget onPressed
+              onPressed: () => {},
+              icon: Icon(Icons.add_circle_outlined),
+              iconSize: 40,
+            )
+          ],
           title: const Text('Record Cataloguer!'),
         ),
         body: const AlbumListView(),
+        floatingActionButton: FloatingActionButton(onPressed: () => startAddNewAlbum, child: Icon(Icons.add),),
         );
   }
 }
