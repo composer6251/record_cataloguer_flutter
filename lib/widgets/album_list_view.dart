@@ -30,86 +30,86 @@ class _AlbumListViewState extends State<AlbumListView> {
         albumQuantity: 1,
         upc: BigInt.from(123456),
         scannedDate: DateTime.now()),
-    AlbumModel(
-      //  albumImage: Image.asset('images/diamond.png'),
-        albumImage: 'diamond.png',
-        albumArtist: 'ArtistName',
-        albumName: 'second album',
-        albumPrice: 15.00,
-        albumQuantity: 5,
-        upc: BigInt.from(123456)),
-    AlbumModel(
-      // albumImage: Image.asset('images/diamond.png'),
-        albumImage: 'diamond.png',
-        albumArtist: 'ArtistName',
-        albumName: 'third album',
-        albumPrice: 25.00,
-        albumQuantity: 1,
-        upc: BigInt.from(123456)),
-    AlbumModel(
-      //  albumImage: Image.asset('images/diamond.png'),
-        albumImage: 'diamond.png',
-        albumArtist: 'ArtistName',
-        albumName: 'fourth album',
-        albumPrice: 35.00,
-        albumQuantity: 5,
-        upc: BigInt.from(123456)),
-    AlbumModel(
-      // albumImage: Image.asset('images/diamond.png'),
-        albumImage: 'diamond.png',
-        albumArtist: 'ArtistName',
-        albumName: 'fifth album',
-        albumPrice: 20.00,
-        albumQuantity: 1,
-        upc: BigInt.from(123456)),
-    AlbumModel(
-      //  albumImage: Image.asset('images/diamond.png'),
-        albumImage: 'diamond.png',
-        albumArtist: 'ArtistName',
-        albumName: 'sixth album',
-        albumPrice: 25.00,
-        albumQuantity: 5,
-        upc: BigInt.from(123456)),
-    AlbumModel(
-      //  albumImage: Image.asset('images/diamond.png'),
-        albumImage: 'diamond.png',
-        albumArtist: 'ArtistName',
-        albumName: 'seventh album',
-        albumPrice: 15.00,
-        albumQuantity: 5,
-        upc: BigInt.from(123456)),
-    AlbumModel(
-      // albumImage: Image.asset('images/diamond.png'),
-        albumImage: 'diamond.png',
-        albumArtist: 'ArtistName',
-        albumName: 'eighth album',
-        albumPrice: 25.00,
-        albumQuantity: 1,
-        upc: BigInt.from(123456)),
-    AlbumModel(
-      //  albumImage: Image.asset('images/diamond.png'),
-        albumImage: 'diamond.png',
-        albumArtist: 'ArtistName',
-        albumName: 'ninth album',
-        albumPrice: 35.00,
-        albumQuantity: 5,
-        upc: BigInt.from(123456)),
-    AlbumModel(
-      // albumImage: Image.asset('images/diamond.png'),
-        albumImage: 'diamond.png',
-        albumArtist: 'ArtistName',
-        albumName: 'tenth album',
-        albumPrice: 20.00,
-        albumQuantity: 1,
-        upc: BigInt.from(123456)),
-    AlbumModel(
-      //  albumImage: Image.asset('images/diamond.png'),
-        albumImage: '',
-        albumArtist: 'ArtistName',
-        albumName: '11th album',
-        albumPrice: 25.00,
-        albumQuantity: 5,
-        upc: BigInt.from(123456)),
+    // AlbumModel(
+    //   //  albumImage: Image.asset('images/diamond.png'),
+    //     albumImage: 'diamond.png',
+    //     albumArtist: 'ArtistName',
+    //     albumName: 'second album',
+    //     albumPrice: 15.00,
+    //     albumQuantity: 5,
+    //     upc: BigInt.from(123456)),
+    // AlbumModel(
+    //   // albumImage: Image.asset('images/diamond.png'),
+    //     albumImage: 'diamond.png',
+    //     albumArtist: 'ArtistName',
+    //     albumName: 'third album',
+    //     albumPrice: 25.00,
+    //     albumQuantity: 1,
+    //     upc: BigInt.from(123456)),
+    // AlbumModel(
+    //   //  albumImage: Image.asset('images/diamond.png'),
+    //     albumImage: 'diamond.png',
+    //     albumArtist: 'ArtistName',
+    //     albumName: 'fourth album',
+    //     albumPrice: 35.00,
+    //     albumQuantity: 5,
+    //     upc: BigInt.from(123456)),
+    // AlbumModel(
+    //   // albumImage: Image.asset('images/diamond.png'),
+    //     albumImage: 'diamond.png',
+    //     albumArtist: 'ArtistName',
+    //     albumName: 'fifth album',
+    //     albumPrice: 20.00,
+    //     albumQuantity: 1,
+    //     upc: BigInt.from(123456)),
+    // AlbumModel(
+    //   //  albumImage: Image.asset('images/diamond.png'),
+    //     albumImage: 'diamond.png',
+    //     albumArtist: 'ArtistName',
+    //     albumName: 'sixth album',
+    //     albumPrice: 25.00,
+    //     albumQuantity: 5,
+    //     upc: BigInt.from(123456)),
+    // AlbumModel(
+    //   //  albumImage: Image.asset('images/diamond.png'),
+    //     albumImage: 'diamond.png',
+    //     albumArtist: 'ArtistName',
+    //     albumName: 'seventh album',
+    //     albumPrice: 15.00,
+    //     albumQuantity: 5,
+    //     upc: BigInt.from(123456)),
+    // AlbumModel(
+    //   // albumImage: Image.asset('images/diamond.png'),
+    //     albumImage: 'diamond.png',
+    //     albumArtist: 'ArtistName',
+    //     albumName: 'eighth album',
+    //     albumPrice: 25.00,
+    //     albumQuantity: 1,
+    //     upc: BigInt.from(123456)),
+    // AlbumModel(
+    //   //  albumImage: Image.asset('images/diamond.png'),
+    //     albumImage: 'diamond.png',
+    //     albumArtist: 'ArtistName',
+    //     albumName: 'ninth album',
+    //     albumPrice: 35.00,
+    //     albumQuantity: 5,
+    //     upc: BigInt.from(123456)),
+    // AlbumModel(
+    //   // albumImage: Image.asset('images/diamond.png'),
+    //     albumImage: 'diamond.png',
+    //     albumArtist: 'ArtistName',
+    //     albumName: 'tenth album',
+    //     albumPrice: 20.00,
+    //     albumQuantity: 1,
+    //     upc: BigInt.from(123456)),
+    // AlbumModel(
+    //   //  albumImage: Image.asset('images/diamond.png'),
+    //     albumImage: '',
+    //     albumArtist: 'ArtistName',
+    //     albumName: '11th album',
+    //     albumPrice: 25.00,
+    //     albumQuantity: 5,
+    //     upc: BigInt.from(123456)),
   ];
 
   void _addNewAlbum(String artist, String album){
@@ -119,16 +119,30 @@ class _AlbumListViewState extends State<AlbumListView> {
     });
   }
 
+  bool showAddAlbumWidget = false;
+
+  setPageState(){
+    setState(() {
+      showAddAlbumWidget = !showAddAlbumWidget;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(left: 20, right: 20),
-      child: Column(
-          children: [
-            AddAlbumWidget(_addNewAlbum),
-            AlbumListWidget(albums),
-          ],
-        ),
+      child: SingleChildScrollView(
+        child: Column(
+            children: [
+              FloatingActionButton(
+                onPressed: () => { setPageState() },
+                child: showAddAlbumWidget ? Text('Hide') : Text('Add'),
+              ),
+              showAddAlbumWidget ? AddAlbumWidget(_addNewAlbum) : Container(),
+              AlbumListWidget(albums),
+            ],
+          ),
+      ),
     );
   }
 }

@@ -22,15 +22,120 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class MyHomePage extends StatelessWidget {
+class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key}) : super(key: key);
-  
-  // void startAddNewAlbum(BuildContext ctx){
-  //   showModalBottomSheet(context: ctx, builder: (_) {
-  //     return AddAlbumWidget();
+
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+
+  // List<AlbumModel> albums = [
+  //   AlbumModel(
+  //     // albumImage: Image.asset('images/diamond.png'),
+  //       albumImage: 'diamond.png',
+  //       albumArtist: 'ArtistName',
+  //       albumName: 'first album',
+  //       albumPrice: 10.00,
+  //       albumQuantity: 1,
+  //       upc: BigInt.from(123456),
+  //       scannedDate: DateTime.now()),
+  //   AlbumModel(
+  //     //  albumImage: Image.asset('images/diamond.png'),
+  //       albumImage: 'diamond.png',
+  //       albumArtist: 'ArtistName',
+  //       albumName: 'second album',
+  //       albumPrice: 15.00,
+  //       albumQuantity: 5,
+  //       upc: BigInt.from(123456)),
+  //   AlbumModel(
+  //     // albumImage: Image.asset('images/diamond.png'),
+  //       albumImage: 'diamond.png',
+  //       albumArtist: 'ArtistName',
+  //       albumName: 'third album',
+  //       albumPrice: 25.00,
+  //       albumQuantity: 1,
+  //       upc: BigInt.from(123456)),
+  //   AlbumModel(
+  //     //  albumImage: Image.asset('images/diamond.png'),
+  //       albumImage: 'diamond.png',
+  //       albumArtist: 'ArtistName',
+  //       albumName: 'fourth album',
+  //       albumPrice: 35.00,
+  //       albumQuantity: 5,
+  //       upc: BigInt.from(123456)),
+  //   AlbumModel(
+  //     // albumImage: Image.asset('images/diamond.png'),
+  //       albumImage: 'diamond.png',
+  //       albumArtist: 'ArtistName',
+  //       albumName: 'fifth album',
+  //       albumPrice: 20.00,
+  //       albumQuantity: 1,
+  //       upc: BigInt.from(123456)),
+  //   AlbumModel(
+  //     //  albumImage: Image.asset('images/diamond.png'),
+  //       albumImage: 'diamond.png',
+  //       albumArtist: 'ArtistName',
+  //       albumName: 'sixth album',
+  //       albumPrice: 25.00,
+  //       albumQuantity: 5,
+  //       upc: BigInt.from(123456)),
+  //   AlbumModel(
+  //     //  albumImage: Image.asset('images/diamond.png'),
+  //       albumImage: 'diamond.png',
+  //       albumArtist: 'ArtistName',
+  //       albumName: 'seventh album',
+  //       albumPrice: 15.00,
+  //       albumQuantity: 5,
+  //       upc: BigInt.from(123456)),
+  //   AlbumModel(
+  //     // albumImage: Image.asset('images/diamond.png'),
+  //       albumImage: 'diamond.png',
+  //       albumArtist: 'ArtistName',
+  //       albumName: 'eighth album',
+  //       albumPrice: 25.00,
+  //       albumQuantity: 1,
+  //       upc: BigInt.from(123456)),
+  //   AlbumModel(
+  //     //  albumImage: Image.asset('images/diamond.png'),
+  //       albumImage: 'diamond.png',
+  //       albumArtist: 'ArtistName',
+  //       albumName: 'ninth album',
+  //       albumPrice: 35.00,
+  //       albumQuantity: 5,
+  //       upc: BigInt.from(123456)),
+  //   AlbumModel(
+  //     // albumImage: Image.asset('images/diamond.png'),
+  //       albumImage: 'diamond.png',
+  //       albumArtist: 'ArtistName',
+  //       albumName: 'tenth album',
+  //       albumPrice: 20.00,
+  //       albumQuantity: 1,
+  //       upc: BigInt.from(123456)),
+  //   AlbumModel(
+  //     //  albumImage: Image.asset('images/diamond.png'),
+  //       albumImage: '',
+  //       albumArtist: 'ArtistName',
+  //       albumName: '11th album',
+  //       albumPrice: 25.00,
+  //       albumQuantity: 5,
+  //       upc: BigInt.from(123456)),
+  // ];
+  //
+  // _addNewAlbum(String artist, String album){
+  //   final newAlbum = AlbumModel(albumImage: '', albumArtist: artist, albumName: album, albumPrice: 0, albumQuantity: 1, upc: BigInt.from(0));
+  //   setState(() {
+  //     albums.add(newAlbum);
   //   });
   // }
-  
+
+  // void openAddAlbumModal(BuildContext ctx) {
+  //   showModalBottomSheet(context: ctx, builder: (_) {
+  //     return AddAlbumWidget(_addNewAlbum('artist', 'album'));
+  //   },);
+  // }
+
   @override
   Widget build(BuildContext context) {
     // // Can tell if the keyboard is currently on screen
@@ -40,19 +145,19 @@ class MyHomePage extends StatelessWidget {
       // keep the keyboard from causing overflow when displayed
       resizeToAvoidBottomInset: false,
         appBar: AppBar(
+
           actions: <Widget>[
-            IconButton(
-              // todo: Route to add_album widget onPressed
-              onPressed: () => {},
-              icon: Icon(Icons.add_circle_outlined),
-              iconSize: 40,
-            )
+            BackButton(color: Colors.red, onPressed: () => { const AlertDialog(title: Text('ALERT!!!!!'),)},)
+            // IconButton(
+            //   // todo: Route to add_album widget onPressed
+            //   onPressed: () => {},
+            //   icon: Icon(Icons.add_circle_outlined),
+            //   iconSize: 40,
+            // )
           ],
           title: const Text('Record Cataloguer!'),
         ),
         body: const AlbumListView(),
-        // todo: Add page to add new album.
-        floatingActionButton: FloatingActionButton(onPressed: () => {}, child: Icon(Icons.add),),
         );
   }
 }
