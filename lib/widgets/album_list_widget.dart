@@ -15,66 +15,69 @@ class AlbumListWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 325,
+      height: 600,
       child: ListView.builder(// Listview(children[]) does NOT create children lazily. Listview.builder() does create Lazily.
         itemBuilder: (context, index) {
-          return Card(
-            elevation: 20,
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Container(
-                  width: 100.00,
-                  height: 100.00,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: albums[index].albumImage == '' ?
-                      const ExactAssetImage(
-                        'images/no-image-available.svg.png',
-                        scale: 1,
-                      ) :
+          return ClipPath(
+            clipBehavior: Clip.hardEdge,
+              child: Card(
+                elevation: 20,
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                      width: 100.00,
+                      height: 100.00,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: albums[index].albumImage == '' ?
+                          const ExactAssetImage(
+                            'images/no-image-available.svg.png',
+                            scale: 1,
+                          ) :
 
-                      const ExactAssetImage(
-                        'images/cat-stevens.jpeg',
-                        scale: 1,
+                          const ExactAssetImage(
+                            'images/cat-stevens.jpeg',
+                            scale: 1,
+                          ),
+                        ),
                       ),
                     ),
-                  ),
-                ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text(albums[index].albumName,
-                        overflow: TextOverflow.ellipsis,
-                        style: const TextStyle(
-                            fontSize: 20, fontWeight: FontWeight.bold)),
-                    Text(DateFormat.yMMMd().format(DateTime.now())),
-                    Container(
-                        decoration: BoxDecoration(
-                          border: Border.all(color: Colors.blueGrey, width: 2),
-                          borderRadius: const BorderRadius.all(Radius.elliptical(1, 10)),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(albums[index].albumName,
+                            overflow: TextOverflow.ellipsis,
+                            style: const TextStyle(
+                                fontSize: 20, fontWeight: FontWeight.bold)),
+                        Text(DateFormat.yMMMd().format(DateTime.now())),
+                        Container(
+                            decoration: BoxDecoration(
+                              border: Border.all(color: Colors.blueGrey, width: 2),
+                              borderRadius: const BorderRadius.all(Radius.elliptical(1, 10)),
+                            ),
+                            child: Text(
+                              '\$${albums[index].albumPrice.toStringAsFixed(2)}',
+                              style: const TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                  decoration: TextDecoration.underline),
+                            )
                         ),
-                        child: Text(
-                          '\$${albums[index].albumPrice.toStringAsFixed(2)}',
-                          style: const TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                              decoration: TextDecoration.underline),
-                        )
+                      ],
                     ),
+                    Container(
+                        padding: EdgeInsets.only(right: 10),
+                        width: 100,
+                        alignment: Alignment.centerRight,
+                        child: Text('x${albums[index].albumQuantity}', style: const TextStyle(fontSize: 20),
+                        )
+                    )
                   ],
                 ),
-                Container(
-                    padding: EdgeInsets.only(right: 10),
-                    width: 100,
-                    alignment: Alignment.centerRight,
-                    child: Text('x${albums[index].albumQuantity}', style: const TextStyle(fontSize: 20),
-                    )
-                )
-              ],
-            ),
+              ),
           );
         },
         itemCount: albums.length,
