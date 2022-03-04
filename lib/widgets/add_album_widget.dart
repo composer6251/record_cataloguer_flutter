@@ -15,7 +15,8 @@ class AddAlbumWidget extends StatelessWidget {
     return Column(
       children: [
         TextField(
-          decoration: const InputDecoration(
+          decoration: InputDecoration(
+            fillColor: Theme.of(context).primaryColorDark,
               labelText: 'Artist',
               floatingLabelStyle: TextStyle(
               fontFamily: 'Times New Roman'
@@ -36,6 +37,8 @@ class AddAlbumWidget extends StatelessWidget {
           onPressed: () {
             print('addingNewAlbum' + artistNameController.text + ' ' + albumNameController.text);
             addNewAlbum(artistNameController.text, albumNameController.text);
+            FocusManager.instance.primaryFocus?.unfocus();
+
           },
           child: const Text("Submit"),
       )
