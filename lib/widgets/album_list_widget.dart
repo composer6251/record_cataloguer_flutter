@@ -21,14 +21,21 @@ class AlbumListWidget extends StatelessWidget {
           return Card(
             elevation: 20,
             child: Row(
+              mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Container(
                   width: 100.00,
                   height: 100.00,
-                  decoration: const BoxDecoration(
+                  decoration: BoxDecoration(
                     image: DecorationImage(
-                      image: ExactAssetImage(
+                      image: albums[index].albumImage == '' ?
+                      const ExactAssetImage(
+                        'images/no-image-available.svg.png',
+                        scale: 1,
+                      ) :
+
+                      const ExactAssetImage(
                         'images/cat-stevens.jpeg',
                         scale: 1,
                       ),
@@ -40,6 +47,7 @@ class AlbumListWidget extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(albums[index].albumName,
+                        overflow: TextOverflow.ellipsis,
                         style: const TextStyle(
                             fontSize: 20, fontWeight: FontWeight.bold)),
                     Text(DateFormat.yMMMd().format(DateTime.now())),
@@ -59,7 +67,7 @@ class AlbumListWidget extends StatelessWidget {
                   ],
                 ),
                 Container(
-                    padding: EdgeInsets.only(right: 20),
+                    padding: EdgeInsets.only(right: 10),
                     width: 100,
                     alignment: Alignment.centerRight,
                     child: Text('x${albums[index].albumQuantity}', style: const TextStyle(fontSize: 20),

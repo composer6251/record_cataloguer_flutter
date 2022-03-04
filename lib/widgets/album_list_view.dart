@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:record_cataloguer/widgets/add_album_widget.dart';
 import 'package:record_cataloguer/widgets/album_list_widget.dart';
@@ -102,20 +104,28 @@ class _AlbumListViewState extends State<AlbumListView> {
         upc: BigInt.from(123456)),
     AlbumModel(
       //  albumImage: Image.asset('images/diamond.png'),
-        albumImage: 'diamond.png',
+        albumImage: '',
         albumArtist: 'ArtistName',
-        albumName: 'eleventh album',
+        albumName: '11th album',
         albumPrice: 25.00,
         albumQuantity: 5,
         upc: BigInt.from(123456)),
   ];
+
+  void _addNewAlbum(String artist, String album){
+    final newAlbum = AlbumModel(albumImage: '', albumArtist: artist, albumName: album, albumPrice: 0, albumQuantity: 1, upc: BigInt.from(0));
+    setState(() {
+      albums.add(newAlbum);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(left: 20, right: 20),
       child: Column(
           children: [
-            AddAlbumWidget(),
+            AddAlbumWidget(_addNewAlbum),
             AlbumListWidget(albums),
           ],
         ),

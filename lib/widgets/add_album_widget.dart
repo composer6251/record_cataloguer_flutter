@@ -4,11 +4,12 @@ import 'package:flutter/material.dart';
  * This class is used to manually enter an album if scanning fails. It should still reach out to EBAY....etc to get album info.
  */
 class AddAlbumWidget extends StatelessWidget {
-  AddAlbumWidget({Key? key}) : super(key: key);
-
-
   final artistNameController = TextEditingController();
   final albumNameController = TextEditingController();
+  final Function addNewAlbum;
+
+  AddAlbumWidget(this.addNewAlbum, {Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -25,13 +26,19 @@ class AddAlbumWidget extends StatelessWidget {
           decoration: const InputDecoration(
             labelText: 'Album',
             floatingLabelStyle: TextStyle(
-                fontFamily: 'Calibri',
+                fontFamily: 'Times New Roman',
             ),
             floatingLabelBehavior: FloatingLabelBehavior.auto
           ),
           controller: albumNameController,
         ),
-        ElevatedButton(onPressed: () => print("New album entered"), child: Text("Submit"))
+        ElevatedButton(
+          onPressed: () {
+            print('addingNewAlbum' + artistNameController.text + ' ' + albumNameController.text);
+            addNewAlbum(artistNameController.text, albumNameController.text);
+          },
+          child: const Text("Submit"),
+      )
       ],
     );
   }

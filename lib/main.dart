@@ -25,15 +25,15 @@ class MyApp extends StatelessWidget {
 class MyHomePage extends StatelessWidget {
   const MyHomePage({Key? key}) : super(key: key);
   
-  void startAddNewAlbum(BuildContext ctx){
-    showModalBottomSheet(context: ctx, builder: (_) {
-      return AddAlbumWidget();
-    });
-  }
+  // void startAddNewAlbum(BuildContext ctx){
+  //   showModalBottomSheet(context: ctx, builder: (_) {
+  //     return AddAlbumWidget();
+  //   });
+  // }
   
   @override
   Widget build(BuildContext context) {
-    // Can tell if the keyboard is currently on screen
+    // // Can tell if the keyboard is currently on screen
     final isKeyboardOpen = MediaQuery.of(context).viewInsets.bottom != 0;
 
     return Scaffold(
@@ -51,7 +51,8 @@ class MyHomePage extends StatelessWidget {
           title: const Text('Record Cataloguer!'),
         ),
         body: const AlbumListView(),
-        floatingActionButton: FloatingActionButton(onPressed: () => startAddNewAlbum, child: Icon(Icons.add),),
+        // todo: Add page to add new album.
+        floatingActionButton: FloatingActionButton(onPressed: () => {}, child: Icon(Icons.add),),
         );
   }
 }
