@@ -112,7 +112,28 @@ class _AlbumListViewState extends State<AlbumListView> {
     //     upc: BigInt.from(123456)),
   ];
 
+  // set up alert dialog box
+  showAlertDialog(BuildContext ctx){
+
+    AlertDialog alert = const AlertDialog(
+      title: Text('Error'),
+      content: Text('Please complete both Artist and Album fields before submitting'),
+    );
+
+    showDialog(
+        context: ctx,
+        builder: (BuildContext context) {
+          return alert;
+        }
+    );
+  }
+
   void _addNewAlbum(String artist, String album){
+    if(artist == '' || album == ''){
+      // todo: Save input text if erroring out
+      showAlertDialog(context);
+      return;
+    }
     final newAlbum = AlbumModel(albumImage: '', albumArtist: artist, albumName: album, albumPrice: 0, albumQuantity: 1, upc: BigInt.from(0));
     setState(() {
       albums.add(newAlbum);
