@@ -14,7 +14,7 @@ class AlbumListWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 600,
       child: ListView.builder(// Listview(children[]) does NOT create children lazily. Listview.builder() does create Lazily.
         itemBuilder: (context, index) {
@@ -33,12 +33,12 @@ class AlbumListWidget extends StatelessWidget {
                         image: DecorationImage(
                           image: albums[index].albumImage == '' ?
                           const ExactAssetImage(
-                            'images/no-image-available.svg.png',
+                            'assets/images/no-image-available.svg.png',
                             scale: 1,
                           ) :
 
                           const ExactAssetImage(
-                            'images/cat-stevens.jpeg',
+                            'assets/images/cat-stevens.jpeg',
                             scale: 1,
                           ),
                         ),
@@ -54,8 +54,9 @@ class AlbumListWidget extends StatelessWidget {
                                 fontSize: 20, fontWeight: FontWeight.bold)),
                         Text(DateFormat.yMMMd().format(DateTime.now())),
                         Container(
+                          padding: const EdgeInsets.all(7),
                             decoration: BoxDecoration(
-                              border: Border.all(color: Colors.blueGrey, width: 2),
+                              border: Border.all(color: Theme.of(context).primaryColorLight, width: 2),
                               borderRadius: const BorderRadius.all(Radius.elliptical(1, 10)),
                             ),
                             child: Text(
