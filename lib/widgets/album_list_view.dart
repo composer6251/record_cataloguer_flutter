@@ -1,8 +1,8 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:record_cataloguer/widgets/add_album_widget.dart';
 import 'package:record_cataloguer/widgets/album_list_widget.dart';
+import 'package:http/http.dart' as http;
+
 import '../model/album.dart';
 
 /***
@@ -30,86 +30,6 @@ class _AlbumListViewState extends State<AlbumListView> {
         albumQuantity: 1,
         upc: BigInt.from(123456),
         scannedDate: DateTime.now()),
-    // AlbumModel(
-    //   //  albumImage: Image.asset('images/diamond.png'),
-    //     albumImage: 'diamond.png',
-    //     albumArtist: 'ArtistName',
-    //     albumName: 'second album',
-    //     albumPrice: 15.00,
-    //     albumQuantity: 5,
-    //     upc: BigInt.from(123456)),
-    // AlbumModel(
-    //   // albumImage: Image.asset('images/diamond.png'),
-    //     albumImage: 'diamond.png',
-    //     albumArtist: 'ArtistName',
-    //     albumName: 'third album',
-    //     albumPrice: 25.00,
-    //     albumQuantity: 1,
-    //     upc: BigInt.from(123456)),
-    // AlbumModel(
-    //   //  albumImage: Image.asset('images/diamond.png'),
-    //     albumImage: 'diamond.png',
-    //     albumArtist: 'ArtistName',
-    //     albumName: 'fourth album',
-    //     albumPrice: 35.00,
-    //     albumQuantity: 5,
-    //     upc: BigInt.from(123456)),
-    // AlbumModel(
-    //   // albumImage: Image.asset('images/diamond.png'),
-    //     albumImage: 'diamond.png',
-    //     albumArtist: 'ArtistName',
-    //     albumName: 'fifth album',
-    //     albumPrice: 20.00,
-    //     albumQuantity: 1,
-    //     upc: BigInt.from(123456)),
-    // AlbumModel(
-    //   //  albumImage: Image.asset('images/diamond.png'),
-    //     albumImage: 'diamond.png',
-    //     albumArtist: 'ArtistName',
-    //     albumName: 'sixth album',
-    //     albumPrice: 25.00,
-    //     albumQuantity: 5,
-    //     upc: BigInt.from(123456)),
-    // AlbumModel(
-    //   //  albumImage: Image.asset('images/diamond.png'),
-    //     albumImage: 'diamond.png',
-    //     albumArtist: 'ArtistName',
-    //     albumName: 'seventh album',
-    //     albumPrice: 15.00,
-    //     albumQuantity: 5,
-    //     upc: BigInt.from(123456)),
-    // AlbumModel(
-    //   // albumImage: Image.asset('images/diamond.png'),
-    //     albumImage: 'diamond.png',
-    //     albumArtist: 'ArtistName',
-    //     albumName: 'eighth album',
-    //     albumPrice: 25.00,
-    //     albumQuantity: 1,
-    //     upc: BigInt.from(123456)),
-    // AlbumModel(
-    //   //  albumImage: Image.asset('images/diamond.png'),
-    //     albumImage: 'diamond.png',
-    //     albumArtist: 'ArtistName',
-    //     albumName: 'ninth album',
-    //     albumPrice: 35.00,
-    //     albumQuantity: 5,
-    //     upc: BigInt.from(123456)),
-    // AlbumModel(
-    //   // albumImage: Image.asset('images/diamond.png'),
-    //     albumImage: 'diamond.png',
-    //     albumArtist: 'ArtistName',
-    //     albumName: 'tenth album',
-    //     albumPrice: 20.00,
-    //     albumQuantity: 1,
-    //     upc: BigInt.from(123456)),
-    // AlbumModel(
-    //   //  albumImage: Image.asset('images/diamond.png'),
-    //     albumImage: '',
-    //     albumArtist: 'ArtistName',
-    //     albumName: '11th album',
-    //     albumPrice: 25.00,
-    //     albumQuantity: 5,
-    //     upc: BigInt.from(123456)),
   ];
 
   // set up alert dialog box
@@ -129,6 +49,11 @@ class _AlbumListViewState extends State<AlbumListView> {
   }
 
   void _addNewAlbum(String artist, String album){
+
+    // todo: Create API service for HTTP
+    final url = Uri.parse('http://localhost:8080/test');
+    http.get(url);
+
     if(artist == '' || album == ''){
       // todo: Save input text if erroring out
       showAlertDialog(context);

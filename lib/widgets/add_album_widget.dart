@@ -15,11 +15,12 @@ class AddAlbumWidget extends StatelessWidget {
     return Column(
       children: [
         TextField(
+          autofocus: true,
           decoration: InputDecoration(
-            fillColor: Theme.of(context).primaryColorDark,
-              labelText: 'Artist',
-              floatingLabelStyle: TextStyle(
-              fontFamily: 'Times New Roman'
+  //          fillColor: Theme.of(context).primaryColorDark,
+            labelText: 'Artist',
+            floatingLabelStyle: TextStyle(
+            fontFamily: 'Times New Roman'
           )),
           controller: artistNameController,
         ),
