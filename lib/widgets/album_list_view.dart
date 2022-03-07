@@ -48,18 +48,19 @@ class _AlbumListViewState extends State<AlbumListView> {
     );
   }
 
-  void _addNewAlbum(String artist, String album){
+  void _addNewAlbum(String artist, String album, DateTime date){
 
     // todo: Create API service for HTTP
-    final url = Uri.parse('http://localhost:8080/test');
-    http.get(url);
+    // final url = Uri.parse('http://localhost:8080/test');
+    // http.get(url);
 
     if(artist == '' || album == ''){
       // todo: Save input text if erroring out
       showAlertDialog(context);
       return;
     }
-    final newAlbum = AlbumModel(albumImage: '', albumArtist: artist, albumName: album, albumPrice: 0, albumQuantity: 1, upc: BigInt.from(0));
+ //   print('date' + date.toString());
+    final newAlbum = AlbumModel(albumImage: '', albumArtist: artist, albumName: album, albumPrice: 0, albumQuantity: 1, upc: BigInt.from(0), scannedDate: date);
     setState(() {
       albums.add(newAlbum);
     });

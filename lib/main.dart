@@ -17,13 +17,20 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Record Cataloguer',
-      // theme: ThemeData(
-      //  primarySwatch: Colors.red,
-      //  fontFamily: 'OpenSans'
-      // ),
-      theme: ThemeData.from(
-        colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.lightBlue),
+      theme: ThemeData(
+       primarySwatch: Colors.blue,
+       fontFamily: 'OpenSans',
+        appBarTheme: const AppBarTheme(
+          titleTextStyle: TextStyle(
+            fontFamily: 'Quicksand',
+            fontSize: 30,
+            fontWeight: FontWeight.bold,
+          ),
+        )
       ),
+      // theme: ThemeData.from(
+      //   colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.lightBlue),
+      // ),
       home: MyHomePage(),
     );
   }
