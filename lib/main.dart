@@ -7,8 +7,10 @@ import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:intl/intl.dart';
 import 'package:record_cataloguer/model/album.dart';
 import 'package:record_cataloguer/widgets/add_album_widget.dart';
-import 'package:record_cataloguer/widgets/album_list_view.dart';
+import 'package:record_cataloguer/screens/album_list_screen.dart';
 import 'package:record_cataloguer/widgets/album_list_widget.dart';
+
+import 'package:http/http.dart' as http;
 
 void main() => runApp(MyApp());
 
@@ -23,7 +25,7 @@ class MyApp extends StatelessWidget {
         appBarTheme: const AppBarTheme(
           titleTextStyle: TextStyle(
             fontFamily: 'Quicksand',
-            fontSize: 30,
+            fontSize: 20,
             fontWeight: FontWeight.bold,
           ),
         )
@@ -67,6 +69,23 @@ class _MyHomePageState extends State<MyHomePage> {
   //   },);
   // }
 
+
+  var isApiTesting = false;
+  switchScreenToAPI(){
+    setState(() {
+      isApiTesting = !isApiTesting;
+    });
+  }
+
+  testEbayApi() {
+    // todo: Create API service for HTTP
+    // final url = Uri.parse('http://localhost:8080/test');
+    // http.get(url);
+    // https://developer.ebay.com/api-docs/buy/browse/resources/item_summary/methods/search
+    final url = Uri.parse('https://developer.ebay.com/api-docs/buy/browse/resources/item_summary/methods/search');
+    http.get(url).then((response) => print('response: ' + response.toString()));
+  }
+
   @override
   Widget build(BuildContext context) {
     // // Can tell if the keyboard is currently on screen
@@ -78,17 +97,21 @@ class _MyHomePageState extends State<MyHomePage> {
         appBar: AppBar(
 
           actions: <Widget>[
-            // BackButton(color: Theme.of(context).primaryColorDark, onPressed: () => {},)
-            // IconButton(
-            //   // todo: Route to add_album widget onPressed
-            //   onPressed: () => {},
-            //   icon: Icon(Icons.add_circle_outlined),
-            //   iconSize: 40,
-            // )
+            FloatingActionButton(
+              child: const FittedBox(child: Text('API Testing')),
+              onPressed: switchScreenToAPI,
+            )
           ],
           title: const Text('Record Cataloguer!'),
         ),
-        body: const AlbumListView(),
+        body: !isApiTesting
+            ?
+        const AlbumListScreen()
+            :
+        Column(children: [
+          Text('Page for testing Ebay API'),
+          AddAlbumWidget(testEbayApi),
+        ],),
         );
   }
 }

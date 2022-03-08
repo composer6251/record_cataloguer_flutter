@@ -11,14 +11,14 @@ import '../model/album.dart';
  * Widget chart: main.dart => AlbumListView => AlbumListWidget
  *
  */
-class AlbumListView extends StatefulWidget {
-  const AlbumListView({Key? key}) : super(key: key);
+class AlbumListScreen extends StatefulWidget {
+  const AlbumListScreen({Key? key}) : super(key: key);
 
   @override
-  _AlbumListViewState createState() => _AlbumListViewState();
+  _AlbumListScreenState createState() => _AlbumListScreenState();
 }
 
-class _AlbumListViewState extends State<AlbumListView> {
+class _AlbumListScreenState extends State<AlbumListScreen> {
 
   List<AlbumModel> albums = [
     AlbumModel(
@@ -59,8 +59,14 @@ class _AlbumListViewState extends State<AlbumListView> {
       showAlertDialog(context);
       return;
     }
- //   print('date' + date.toString());
-    final newAlbum = AlbumModel(albumImage: '', albumArtist: artist, albumName: album, albumPrice: 0, albumQuantity: 1, upc: BigInt.from(0), scannedDate: date);
+    final newAlbum = AlbumModel(
+        albumImage: '',
+        albumArtist: artist,
+        albumName: album, albumPrice: 0,
+        albumQuantity: 1,
+        upc: BigInt.from(0),
+        scannedDate: date);
+
     setState(() {
       albums.add(newAlbum);
     });

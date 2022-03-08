@@ -7,7 +7,7 @@ class AlbumModel {
   late double albumPrice;
   late int albumQuantity;
   late BigInt upc;
-  late DateTime? scannedDate;
+  late DateTime scannedDate;
 
   AlbumModel({
     required this.albumImage,
@@ -16,6 +16,6 @@ class AlbumModel {
     required this.albumPrice,
     required this.albumQuantity,
     required this.upc,
-    this.scannedDate,
+    required this.scannedDate,
   });
 }

@@ -29,7 +29,6 @@ class _AddAlbumWidgetState extends State<AddAlbumWidget> {
         firstDate: DateTime(2022), 
         lastDate: DateTime.now()
     ).then((pickedDate) => {
-      print('pickedDate: ' + pickedDate.toString()),
       setState(() {
       _selectedDate = pickedDate!;
       }),

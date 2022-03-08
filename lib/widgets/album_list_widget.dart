@@ -52,7 +52,7 @@ class AlbumListWidget extends StatelessWidget {
                             overflow: TextOverflow.ellipsis,
                             style: const TextStyle(
                                 fontSize: 20, fontWeight: FontWeight.bold)),
-                        Text(DateFormat.yMMMd().format(DateTime.now())),
+                        Text(DateFormat.yMMMd().format(albums[index].scannedDate)),
                         Container(
                           padding: const EdgeInsets.all(7),
                             decoration: BoxDecoration(
