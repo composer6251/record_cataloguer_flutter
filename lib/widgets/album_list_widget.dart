@@ -9,7 +9,7 @@ import 'package:record_cataloguer/model/album.dart';
  */
 
 class AlbumListWidget extends StatelessWidget {
-  final List<AlbumModel> albums;
+  final List<Album> albums;
   const AlbumListWidget(this.albums, {Key? key}) : super(key: key);
 
   @override

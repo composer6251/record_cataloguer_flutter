@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:intl/intl.dart';
+import 'package:record_cataloguer/api/api_urls.dart';
 import 'package:record_cataloguer/model/album.dart';
 import 'package:record_cataloguer/widgets/add_album_widget.dart';
 import 'package:record_cataloguer/screens/album_list_screen.dart';
@@ -77,13 +78,17 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
-  testEbayApi() {
-    // todo: Create API service for HTTP
-    // final url = Uri.parse('http://localhost:8080/test');
-    // http.get(url);
-    // https://developer.ebay.com/api-docs/buy/browse/resources/item_summary/methods/search
-    final url = Uri.parse('https://developer.ebay.com/api-docs/buy/browse/resources/item_summary/methods/search');
-    http.get(url).then((response) => print('response: ' + response.toString()));
+  testAddNewAlbum() {
+  // todo: Get creds from ebay
+    http.post(
+        Uri.parse(ebaySandboxAuthorizationApiUrl),
+        headers: <String, String> {
+          'Content-Type': 'application/s-www-form-urlencoded',
+          'Authorization': "Basic "
+        }
+    ).then((response) => print(
+        'API response code: ' + response.statusCode.toString() +
+            '\nand body: ' + response.body));
   }
 
   @override
@@ -98,6 +103,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
           actions: <Widget>[
             FloatingActionButton(
+              backgroundColor: Colors.red,
               child: const FittedBox(child: Text('API Testing')),
               onPressed: switchScreenToAPI,
             )
@@ -110,7 +116,7 @@ class _MyHomePageState extends State<MyHomePage> {
             :
         Column(children: [
           Text('Page for testing Ebay API'),
-          AddAlbumWidget(testEbayApi),
+          AddAlbumWidget(testAddNewAlbum),
         ],),
         );
   }

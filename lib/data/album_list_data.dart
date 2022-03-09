@@ -9,8 +9,8 @@ import 'package:record_cataloguer/model/album.dart';
 
 // todo: Implement Mock Data Class instead of having data in album_list_view
 
-  List<AlbumModel> albumList = [
-    AlbumModel(
+  List<Album> albumList = [
+    Album(
       // albumImage: Image.asset('images/diamond.png'),
         albumImage: 'diamond.png',
         albumArtist: 'artist',

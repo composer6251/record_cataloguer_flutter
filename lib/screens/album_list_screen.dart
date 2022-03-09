@@ -20,8 +20,8 @@ class AlbumListScreen extends StatefulWidget {
 
 class _AlbumListScreenState extends State<AlbumListScreen> {
 
-  List<AlbumModel> albums = [
-    AlbumModel(
+  List<Album> albums = [
+    Album(
       // albumImage: Image.asset('images/diamond.png'),
         albumImage: 'diamond.png',
         albumArtist: 'ArtistName',
@@ -59,7 +59,7 @@ class _AlbumListScreenState extends State<AlbumListScreen> {
       showAlertDialog(context);
       return;
     }
-    final newAlbum = AlbumModel(
+    final newAlbum = Album(
         albumImage: '',
         albumArtist: artist,
         albumName: album, albumPrice: 0,
