@@ -64,21 +64,46 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
+  void _addNewAlbum(String artist, String album, DateTime date){
+
+    // todo: Create API service for HTTP
+    // final url = Uri.parse('http://localhost:8080/test');
+    // http.get(url);
+
+    if(artist == '' || album == ''){
+      // todo: Save input text if erroring out
+      showAlertDialog(context);
+      return;
+    }
+    final newAlbum = Album(
+        albumImage: '',
+        albumArtist: artist,
+        albumName: album, albumPrice: 0,
+        albumQuantity: 1,
+        upc: BigInt.from(0),
+        scannedDate: date);
+
+    // setState(() {
+    //   albums.add(newAlbum);
+    // });
+  }
+
+
   // void openAddAlbumModal(BuildContext ctx) {
   //   showModalBottomSheet(context: ctx, builder: (_) {
-  //     return AddAlbumWidget(_addNewAlbum('artist', 'album'));
+  //     return AddAlbumWidget(_addNewAlbum('artist', 'album', DateTime.now()));
   //   },);
   // }
 
 
   var isApiTesting = false;
-  switchScreenToAPI(){
+  _switchScreenToAPI(){
     setState(() {
       isApiTesting = !isApiTesting;
     });
   }
 
-  testAddNewAlbum() {
+  _testAddNewAlbum() {
   // todo: Get creds from ebay
     http.post(
         Uri.parse(ebaySandboxAuthorizationApiUrl),
@@ -100,13 +125,18 @@ class _MyHomePageState extends State<MyHomePage> {
       // keep the keyboard from causing overflow when displayed
       resizeToAvoidBottomInset: false,
         appBar: AppBar(
-
+          leading: FloatingActionButton(
+            child: Icon(Icons.add),
+            onPressed: () => {},
+            backgroundColor: Colors.green,
+          ),
+          automaticallyImplyLeading: true,
           actions: <Widget>[
             FloatingActionButton(
               backgroundColor: Colors.red,
               child: const FittedBox(child: Text('API Testing')),
-              onPressed: switchScreenToAPI,
-            )
+              onPressed: _switchScreenToAPI,
+            ),
           ],
           title: const Text('Record Cataloguer!'),
         ),
@@ -116,7 +146,7 @@ class _MyHomePageState extends State<MyHomePage> {
             :
         Column(children: [
           Text('Page for testing Ebay API'),
-          AddAlbumWidget(testAddNewAlbum),
+          AddAlbumWidget(_testAddNewAlbum),
         ],),
         );
   }

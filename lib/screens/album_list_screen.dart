@@ -73,7 +73,6 @@ class _AlbumListScreenState extends State<AlbumListScreen> {
   }
 
   bool showAddAlbumWidget = false;
-
   setPageState(){
     setState(() {
       showAddAlbumWidget = !showAddAlbumWidget;
@@ -90,6 +89,16 @@ class _AlbumListScreenState extends State<AlbumListScreen> {
               FloatingActionButton(
                 onPressed: () => { setPageState() },
                 child: showAddAlbumWidget ? Text('Hide') : Text('Add'),
+              ),
+              Title(
+                color: Colors.black,
+                child: const Text(
+                  'My Albums',
+                  style: TextStyle(
+                    fontSize: 30,
+                    fontWeight: FontWeight.w800,
+                  ),
+                ),
               ),
               showAddAlbumWidget ? AddAlbumWidget(_addNewAlbum) : Container(),
               AlbumListWidget(albums),
