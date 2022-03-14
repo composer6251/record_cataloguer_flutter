@@ -109,8 +109,12 @@ class _MyHomePageState extends State<MyHomePage> {
         Uri.parse(ebaySandboxAuthorizationApiUrl),
         headers: <String, String> {
           'Content-Type': 'application/s-www-form-urlencoded',
-          'Authorization': "Basic "
-        }
+          'Authorization': 'Basic $encodedClientIdSecret',
+        },
+      body: {
+          'grant_type=client_credentials',
+          'scope= test'//todo: add scope from Ebay bookmark
+      }
     ).then((response) => print(
         'API response code: ' + response.statusCode.toString() +
             '\nand body: ' + response.body));
