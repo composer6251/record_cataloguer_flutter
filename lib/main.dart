@@ -9,7 +9,7 @@ import 'package:record_cataloguer/api/api_urls.dart';
 import 'package:record_cataloguer/model/album.dart';
 import 'package:record_cataloguer/service/ebay_service.dart';
 import 'package:record_cataloguer/widgets/add_album_widget.dart';
-import 'package:record_cataloguer/screens/album_list_screen.dart';
+import 'package:record_cataloguer/screens/manage_my_albums_screen.dart';
 import 'package:record_cataloguer/widgets/album_list_widget.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
@@ -130,7 +130,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         body: !isApiTesting
             ?
-        const AlbumListScreen()
+        const ManageMyAlbumsScreen()
             :
         Column(children: [
           Text('Page for testing Ebay API'),
