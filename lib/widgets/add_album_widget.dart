@@ -75,7 +75,7 @@ class _AddAlbumWidgetState extends State<AddAlbumWidget> {
           onPressed: () {
             // Testing
             widget.addNewAlbum();
-            //widget.addNewAlbum(_artistNameController.text, _albumNameController.text, _selectedDate);
+          //  widget.addNewAlbum(_artistNameController.text, _albumNameController.text, _selectedDate);
             FocusManager.instance.primaryFocus?.unfocus();
           },
           child: const Text("Submit"),

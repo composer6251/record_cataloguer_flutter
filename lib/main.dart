@@ -7,10 +7,11 @@ import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:intl/intl.dart';
 import 'package:record_cataloguer/api/api_urls.dart';
 import 'package:record_cataloguer/model/album.dart';
+import 'package:record_cataloguer/service/ebay_service.dart';
 import 'package:record_cataloguer/widgets/add_album_widget.dart';
 import 'package:record_cataloguer/screens/album_list_screen.dart';
 import 'package:record_cataloguer/widgets/album_list_widget.dart';
-
+import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 void main() => runApp(MyApp());
@@ -103,23 +104,6 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
-  _testAddNewAlbum() {
-  // todo: Get creds from ebay
-    http.post(
-        Uri.parse(ebaySandboxAuthorizationApiUrl),
-        headers: <String, String> {
-          'Content-Type': 'application/s-www-form-urlencoded',
-          'Authorization': 'Basic $encodedClientIdSecret',
-        },
-      body: {
-          'grant_type=client_credentials',
-          'scope= test'//todo: add scope from Ebay bookmark
-      }
-    ).then((response) => print(
-        'API response code: ' + response.statusCode.toString() +
-            '\nand body: ' + response.body));
-  }
-
   @override
   Widget build(BuildContext context) {
     // // Can tell if the keyboard is currently on screen
@@ -150,7 +134,7 @@ class _MyHomePageState extends State<MyHomePage> {
             :
         Column(children: [
           Text('Page for testing Ebay API'),
-          AddAlbumWidget(_testAddNewAlbum),
+          AddAlbumWidget(EbayService.getEbayAuthorizationToken),
         ],),
         );
   }

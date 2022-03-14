@@ -1,10 +1,15 @@
+import 'package:flutter/cupertino.dart';
+
 /// *
 /// This holds immutable strings of the urls used in the application
 
+// These API urls are to get the OAuth tokens required to talk to Ebays inventory APIs.
 //https://developer.ebay.com/api-docs/static/oauth-client-credentials-grant.html
 const ebaySandboxAuthorizationApiUrl = 'https://api.sandbox.ebay.com/identity/v1/oauth2/token';
 const ebayProductionAuthorizationApiUrl = 'https://api.ebay.com/identity/v1/oauth2/token';
 
+//Catalog API GET https://api.ebay.com/commerce/catalog/v1_beta/product/{epid}  // epid is ebay Identifier. //todo: What is it?
+final catalogApiGetProduct = 'GET https://api.ebay.com/commerce/catalog/v1_beta/product/';
 ///Sandbox environment: This API location points to the Sandbox environment, the testing environment.
 ///Use this environment when you are in the development phase of your application life cycle—calls made
 ///to the Sandbox do not affect live listings, users, inventory, and so on.**/
