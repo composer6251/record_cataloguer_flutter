@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:record_cataloguer/data/album_list_data.dart';
 import 'package:record_cataloguer/widgets/add_album_widget.dart';
 import 'package:record_cataloguer/widgets/album_list_widget.dart';
 import 'package:http/http.dart' as http;
@@ -19,18 +20,7 @@ class ManageMyAlbumsScreen extends StatefulWidget {
 }
 
 class _ManageMyAlbumsScreenState extends State<ManageMyAlbumsScreen> {
-
-  List<Album> albums = [
-    Album(
-      // albumImage: Image.asset('images/diamond.png'),
-        albumImage: 'diamond.png',
-        albumArtist: 'ArtistName',
-        albumName: 'first album',
-        albumPrice: 10.00,
-        albumQuantity: 1,
-        upc: BigInt.from(123456),
-        scannedDate: DateTime.now()),
-  ];
+    List<Album> albums = albumList;
 
   // set up alert dialog box
   showAlertDialog(BuildContext ctx){
@@ -50,10 +40,6 @@ class _ManageMyAlbumsScreenState extends State<ManageMyAlbumsScreen> {
 
   void _addNewAlbum(String artist, String album, DateTime date){
 
-    // todo: Create API service for HTTP
-    // final url = Uri.parse('http://localhost:8080/test');
-    // http.get(url);
-
     if(artist == '' || album == ''){
       // todo: Save input text if erroring out
       showAlertDialog(context);
@@ -68,7 +54,7 @@ class _ManageMyAlbumsScreenState extends State<ManageMyAlbumsScreen> {
         scannedDate: date);
 
     setState(() {
-      albums.add(newAlbum);
+      albums.insert(0, newAlbum);
     });
   }
 
@@ -79,6 +65,12 @@ class _ManageMyAlbumsScreenState extends State<ManageMyAlbumsScreen> {
     });
   }
 
+  openAddAlbumModal(BuildContext ctx) {
+    showModalBottomSheet(context: ctx, builder: (_) {
+      return AddAlbumWidget(_addNewAlbum);
+    },);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -87,7 +79,10 @@ class _ManageMyAlbumsScreenState extends State<ManageMyAlbumsScreen> {
         child: Column(
             children: [
               FloatingActionButton(
-                onPressed: () => { setPageState() },
+                onPressed: () => { 
+                //  setPageState()
+                  openAddAlbumModal(context)
+                },
                 child: showAddAlbumWidget ? Text('Hide') : Text('Add'),
               ),
               Title(
