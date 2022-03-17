@@ -78,21 +78,11 @@ class _ManageMyAlbumsScreenState extends State<ManageMyAlbumsScreen> {
       child: SingleChildScrollView(
         child: Column(
             children: [
-              FloatingActionButton(
+              ElevatedButton(
                 onPressed: () => {
                   openAddAlbumModal(context)
                 },
                 child: showAddAlbumWidget ? Text('Hide') : Text('Add'),
-              ),
-              Title(
-                color: Colors.black,
-                child: const Text(
-                  'My Albums',
-                  style: TextStyle(
-                    fontSize: 30,
-                    fontWeight: FontWeight.w800,
-                  ),
-                ),
               ),
               showAddAlbumWidget ? AddAlbumWidget(_addNewAlbum) : Container(),
               AlbumListWidget(albums),

@@ -99,11 +99,6 @@ class _MyHomePageState extends State<MyHomePage> {
       // keep the keyboard from causing overflow when displayed
       resizeToAvoidBottomInset: false,
         appBar: AppBar(
-          leading: FloatingActionButton(
-            child: Icon(Icons.add),
-            onPressed: () => {},
-            backgroundColor: Colors.green,
-          ),
           automaticallyImplyLeading: true,
           actions: <Widget>[
             FloatingActionButton(

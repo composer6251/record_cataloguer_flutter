@@ -14,7 +14,8 @@ class MyAlbumsScreen extends StatefulWidget {
   State<MyAlbumsScreen> createState() => _MyAlbumsScreenState();
 }
 
-navigateToManageMyAlbums(BuildContext ctx) {
+void navigateToManageMyAlbums(BuildContext ctx) {
+  print('Navigating to ManageMyAlbums Screen');
   Navigator.of(ctx).push(MaterialPageRoute(builder: (_) {
     return MyHomePage();
   }));
@@ -25,11 +26,21 @@ class _MyAlbumsScreenState extends State<MyAlbumsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => navigateToManageMyAlbums(context),
-      ),
       appBar: AppBar(
-        title: Text(
+          actions: <Widget> [
+            FloatingActionButton(
+              backgroundColor: Colors.green,
+              elevation: 25,
+              child: const FittedBox(
+                child: Text(
+                    'Manage'
+                ),
+              ),
+              onPressed: () => navigateToManageMyAlbums(context),
+            ),
+          ],
+        centerTitle: true,
+        title: const Text(
           'My Albums'
         ),
       ),
