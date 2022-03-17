@@ -5,14 +5,14 @@ import 'package:flutter/cupertino.dart';
 
 //Production environment: This API location points to the production environment
 // where you calls affect live listings, users, inventory, and so on.
-const ebaySandboxApiBaseUrl = 'https://api.sandbox.ebay.com';
-const ebayProductionBaseUri = 'https://api.ebay.com';
+const ebaySandboxApiBaseUrl = 'api.sandbox.ebay.com';
+const ebayProductionBaseUri = 'api.ebay.com';
 
 /*****AUTHORIZATION******/
 // These API urls are to get the OAuth tokens required to talk to Ebays inventory APIs.
 //https://developer.ebay.com/api-docs/static/oauth-client-credentials-grant.html
-const ebaySandboxAuthorizationApiUrl = '/identity/v1/oauth2/token';
-const ebayProductionAuthorizationApiUrl = '/identity/v1/oauth2/token';
+const ebaySandboxAuthorizationApiPath = '/identity/v1/oauth2/token';
+const ebayProductionAuthorizationApiPath = '/identity/v1/oauth2/token';
 
 /// ****PRODUCTION CATALOG API ENDPOINTS (https://developer.ebay.com/api-docs/commerce/catalog/resources/methods)*****///
 const catalogApiSearchUrl = '/commerce/catalog/v1_beta/product_summary/search?';

@@ -7,6 +7,7 @@ import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:intl/intl.dart';
 import 'package:record_cataloguer/api/api_urls.dart';
 import 'package:record_cataloguer/model/album.dart';
+import 'package:record_cataloguer/screens/my_albums_screen.dart';
 import 'package:record_cataloguer/service/ebay_service.dart';
 import 'package:record_cataloguer/widgets/add_album_widget.dart';
 import 'package:record_cataloguer/screens/manage_my_albums_screen.dart';
@@ -35,7 +36,8 @@ class MyApp extends StatelessWidget {
       // theme: ThemeData.from(
       //   colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.lightBlue),
       // ),
-      home: MyHomePage(),
+      home: MyAlbumsScreen(),
+
     );
   }
 }
@@ -65,37 +67,21 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  void _addNewAlbum(String artist, String album, DateTime date){
-
-    // todo: Create API service for HTTP
-    // final url = Uri.parse('http://localhost:8080/test');
-    // http.get(url);
-
-    if(artist == '' || album == ''){
-      // todo: Save input text if erroring out
-      showAlertDialog(context);
-      return;
-    }
-    final newAlbum = Album(
-        albumImage: '',
-        albumArtist: artist,
-        albumName: album, albumPrice: 0,
-        albumQuantity: 1,
-        upc: BigInt.from(0),
-        scannedDate: date);
-
-    // setState(() {
-    //   albums.add(newAlbum);
-    // });
-  }
-
-
-  // void openAddAlbumModal(BuildContext ctx) {
-  //   showModalBottomSheet(context: ctx, builder: (_) {
-  //     return AddAlbumWidget(_addNewAlbum('artist', 'album', DateTime.now()));
-  //   },);
+  // void _addNewAlbum(String artist, String album, DateTime date){
+  //
+  //   if(artist == '' || album == ''){
+  //     // todo: Save input text if erroring out
+  //     showAlertDialog(context);
+  //     return;
+  //   }
+  //   final newAlbum = Album(
+  //       albumImage: '',
+  //       albumArtist: artist,
+  //       albumName: album, albumPrice: 0,
+  //       albumQuantity: 1,
+  //       upc: BigInt.from(0),
+  //       scannedDate: date);
   // }
-
 
   var isApiTesting = false;
   _switchScreenToAPI(){

@@ -20,7 +20,7 @@ class ManageMyAlbumsScreen extends StatefulWidget {
 }
 
 class _ManageMyAlbumsScreenState extends State<ManageMyAlbumsScreen> {
-    List<Album> albums = albumList;
+    List<Album> albums = [];
 
   // set up alert dialog box
   showAlertDialog(BuildContext ctx){
@@ -79,8 +79,7 @@ class _ManageMyAlbumsScreenState extends State<ManageMyAlbumsScreen> {
         child: Column(
             children: [
               FloatingActionButton(
-                onPressed: () => { 
-                //  setPageState()
+                onPressed: () => {
                   openAddAlbumModal(context)
                 },
                 child: showAddAlbumWidget ? Text('Hide') : Text('Add'),

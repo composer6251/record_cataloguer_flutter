@@ -9,7 +9,7 @@ class EbayService {
   static String ebayAuthorizationToken = '';
 
   static getEbayAuthorizationToken() {
-    var url = Uri.https('api.sandbox.ebay.com', 'identity/v1/oauth2/token');
+    var url = Uri.https(ebaySandboxApiBaseUrl, ebaySandboxAuthorizationApiPath);
     http.post(
         url,
         headers: <String, String>{
