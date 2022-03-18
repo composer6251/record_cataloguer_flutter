@@ -1,5 +1,8 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:record_cataloguer/data/album_list_data.dart';
+import 'package:record_cataloguer/screens/my_albums_screen.dart';
 import 'package:record_cataloguer/widgets/add_album_widget.dart';
 import 'package:record_cataloguer/widgets/album_list_widget.dart';
 import 'package:http/http.dart' as http;
@@ -71,23 +74,53 @@ class _ManageMyAlbumsScreenState extends State<ManageMyAlbumsScreen> {
     },);
   }
 
+  navigateToMyAlbumsScreen(BuildContext ctx) {
+    print('Navigating to My Albums Screen');
+    Navigator.of(ctx).push(MaterialPageRoute(builder: (_) {
+      return MyAlbumsScreen();
+    }));
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.only(left: 20, right: 20),
-      child: SingleChildScrollView(
-        child: Column(
-            children: [
-              ElevatedButton(
-                onPressed: () => {
-                  openAddAlbumModal(context)
-                },
-                child: showAddAlbumWidget ? Text('Hide') : Text('Add'),
-              ),
-              showAddAlbumWidget ? AddAlbumWidget(_addNewAlbum) : Container(),
-              AlbumListWidget(albums),
-            ],
-          ),
+    return Scaffold(
+      appBar: AppBar(
+        actions: [
+          FloatingActionButton(
+            onPressed: () => navigateToMyAlbumsScreen(context),
+            child: const FittedBox(
+                child: Text(
+                  'View Albums',
+                  style: TextStyle(
+                    fontSize: 25,
+                    fontWeight: FontWeight.bold,
+                  ),
+                )
+            ),
+          )
+        ],
+        title: Text('Add Albums'),
+      ),
+      body: Container(
+        margin: const EdgeInsets.only(left: 20, right: 20),
+        child: SingleChildScrollView(
+          child: Column(
+              children: [
+                Row(
+                  children: [
+                    ElevatedButton(
+                      onPressed: () => {
+                        openAddAlbumModal(context)
+                      },
+                      child: showAddAlbumWidget ? Text('Hide') : Text('Add'),
+                    ),
+                  ],
+                ),
+                showAddAlbumWidget ? AddAlbumWidget(_addNewAlbum) : Container(),
+                AlbumListWidget(albums),
+              ],
+            ),
+        ),
       ),
     );
   }

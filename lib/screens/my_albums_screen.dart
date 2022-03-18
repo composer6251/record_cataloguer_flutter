@@ -17,7 +17,7 @@ class MyAlbumsScreen extends StatefulWidget {
 void navigateToManageMyAlbums(BuildContext ctx) {
   print('Navigating to ManageMyAlbums Screen');
   Navigator.of(ctx).push(MaterialPageRoute(builder: (_) {
-    return MyHomePage();
+    return ManageMyAlbumsScreen();
   }));
 }
 
