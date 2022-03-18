@@ -9,13 +9,13 @@ import 'package:record_cataloguer/model/album.dart';
  */
 
 class AlbumListWidget extends StatelessWidget {
-  final List<AlbumModel> albums;
+  final List<Album> albums;
   const AlbumListWidget(this.albums, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 600,
+      height: 650,
       child: ListView.builder(// Listview(children[]) does NOT create children lazily. Listview.builder() does create Lazily.
         itemBuilder: (context, index) {
           return ClipPath(
@@ -36,7 +36,6 @@ class AlbumListWidget extends StatelessWidget {
                             'assets/images/no-image-available.svg.png',
                             scale: 1,
                           ) :
-
                           const ExactAssetImage(
                             'assets/images/cat-stevens.jpeg',
                             scale: 1,
@@ -52,7 +51,7 @@ class AlbumListWidget extends StatelessWidget {
                             overflow: TextOverflow.ellipsis,
                             style: const TextStyle(
                                 fontSize: 20, fontWeight: FontWeight.bold)),
-                        Text(DateFormat.yMMMd().format(DateTime.now())),
+                        Text(DateFormat.yMMMd().format(albums[index].scannedDate)),
                         Container(
                           padding: const EdgeInsets.all(7),
                             decoration: BoxDecoration(
