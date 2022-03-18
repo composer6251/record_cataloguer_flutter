@@ -34,12 +34,24 @@ class EbayService {
   }
 
   //todo: Finish!!!!
-  static getEbayApiAlbum() {
+  static getEbayApiAlbum (url) {
     if (ebayAuthorizationToken == ''){
-      getEbayAuthorizationToken();
+      ebayAuthorizationToken = getEbayAuthorizationToken()
+          .then((response) => {
+            if (response.statusCode == 200){
+              ebayAuthorizationToken = response.body,
+              print(
+                  'API response code: ' + response.statusCode.toString() +
+                      '\nand body: ' + response.body.toString())
+            }
+            else {
+              log('Received error from ebay auth endpoint with status code: ' +
+                  response.statusCode.toString() + ' and message: ' + response.body)
+            }
+        });
     }
 
-    var url = Uri.https('authority', 'unencodedPath');
+    // var url = Uri.https(ebaySandboxApiBaseUrl, ebaySandboxAuthorizationApiPath);
     // http.post(
     //   url,
     //

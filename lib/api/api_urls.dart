@@ -15,6 +15,15 @@ const ebaySandboxAuthorizationApiPath = '/identity/v1/oauth2/token';
 const ebayProductionAuthorizationApiPath = '/identity/v1/oauth2/token';
 
 /// ****PRODUCTION CATALOG API ENDPOINTS (https://developer.ebay.com/api-docs/commerce/catalog/resources/methods)*****///
+/// GET https://api.ebay.com/commerce/catalog/v1_beta/product_summary/search?
+// q=string&   // ex: q=catstephens,teaforthetillerman
+// gtin=string&  // UPC
+// mpn=string&
+// category_ids=string&
+// aspect_filter=AspectFilter&
+// fieldgroups=string&
+// limit=string&
+// offset=string
 const catalogApiSearchUrl = '/commerce/catalog/v1_beta/product_summary/search?';
 const catalogApiGetProductUrl = '/commerce/catalog/v1_beta/product/';
 

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:record_cataloguer/api/api_urls.dart';
 import 'package:record_cataloguer/service/ebay_service.dart';
 import 'package:record_cataloguer/widgets/add_album_widget.dart';
 
@@ -7,6 +8,10 @@ class ApiTestingScreen extends StatefulWidget {
 
   @override
   State<ApiTestingScreen> createState() => _ApiTestingScreenState();
+}
+
+void callEbaySearchEndpointSandbox(url) {
+  EbayService.getEbayApiAlbum(url);
 }
 
 class _ApiTestingScreenState extends State<ApiTestingScreen> {
@@ -20,7 +25,14 @@ class _ApiTestingScreenState extends State<ApiTestingScreen> {
       ),
       body: Column(
         children: [
-        AddAlbumWidget(EbayService.getEbayAuthorizationToken),
+          AddAlbumWidget(EbayService.getEbayAuthorizationToken),
+          SizedBox(
+            height: 80,
+          ),
+          ElevatedButton(
+            child: Text('Test Sandbox Search Endpoint'),
+            onPressed: () => callEbaySearchEndpointSandbox(ebaySandboxApiBaseUrl + catalogApiSearchUrl + 'q=catstevens'),
+          )
       ],
       ),
     );
