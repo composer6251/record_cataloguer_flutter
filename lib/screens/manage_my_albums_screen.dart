@@ -78,7 +78,7 @@ class _ManageMyAlbumsScreenState extends State<ManageMyAlbumsScreen> {
 
   navigateToApiTestingScreen(BuildContext ctx) {
     Navigator.of(ctx).push(MaterialPageRoute(builder: (_) {
-      return ApiTestingScreen();
+      return const ApiTestingScreen();
     }));
   }
 
