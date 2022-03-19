@@ -1,10 +1,16 @@
+
+import 'dart:math';
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
-import 'package:record_cataloguer/data/album_list_data.dart';
+import 'package:record_cataloguer/screens/api_testing_screen.dart';
+import 'package:record_cataloguer/screens/my_albums_screen.dart';
 import 'package:record_cataloguer/widgets/add_album_widget.dart';
 import 'package:record_cataloguer/widgets/album_list_widget.dart';
-import 'package:http/http.dart' as http;
+import 'package:fluttertoast/fluttertoast.dart';
 
 import '../model/album.dart';
+import '../data/love_notes.dart';
 
 /***
  * This class holds the album list state and injects the album data into the AlbumListWidget
@@ -21,8 +27,8 @@ class ManageMyAlbumsScreen extends StatefulWidget {
 
 class _ManageMyAlbumsScreenState extends State<ManageMyAlbumsScreen> {
     List<Album> albums = [];
+    List<int> usedIndices = [];
 
-  // set up alert dialog box
   showAlertDialog(BuildContext ctx){
 
     AlertDialog alert = const AlertDialog(
@@ -58,36 +64,117 @@ class _ManageMyAlbumsScreenState extends State<ManageMyAlbumsScreen> {
     });
   }
 
-  bool showAddAlbumWidget = false;
-  setPageState(){
-    setState(() {
-      showAddAlbumWidget = !showAddAlbumWidget;
-    });
-  }
-
   openAddAlbumModal(BuildContext ctx) {
     showModalBottomSheet(context: ctx, builder: (_) {
       return AddAlbumWidget(_addNewAlbum);
     },);
   }
 
+  navigateToMyAlbumsScreen(BuildContext ctx) {
+    Navigator.of(ctx).push(MaterialPageRoute(builder: (_) {
+      return MyAlbumsScreen();
+    }));
+  }
+
+  navigateToApiTestingScreen(BuildContext ctx) {
+    Navigator.of(ctx).push(MaterialPageRoute(builder: (_) {
+      return ApiTestingScreen();
+    }));
+  }
+
+  void _showToast(BuildContext ctx) {
+    int nextRandom;
+    if (usedIndices.length == notes.length){
+      usedIndices = [];
+      print('usedIndices length: ' + usedIndices.length.toString());
+    }
+    final _random = Random();
+    do {
+      nextRandom = _random.nextInt(notes.length);
+    }
+    while (usedIndices.contains(nextRandom));
+    usedIndices.add(nextRandom);
+    String quote = notes[nextRandom];
+    Fluttertoast.showToast(
+      msg: quote,
+      gravity: ToastGravity.CENTER,
+      backgroundColor: Colors.red,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.only(left: 20, right: 20),
-      child: SingleChildScrollView(
-        child: Column(
-            children: [
-              ElevatedButton(
-                onPressed: () => {
-                  openAddAlbumModal(context)
-                },
-                child: showAddAlbumWidget ? Text('Hide') : Text('Add'),
+    return Scaffold(
+      appBar: AppBar(
+        toolbarHeight: 60,
+        automaticallyImplyLeading: false,
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            ElevatedButton(
+              child: const FittedBox(
+                  child: Text(
+                    'API Testing'
+                  )
               ),
-              showAddAlbumWidget ? AddAlbumWidget(_addNewAlbum) : Container(),
-              AlbumListWidget(albums),
-            ],
-          ),
+              onPressed: () => navigateToApiTestingScreen(context),
+              style: ElevatedButton.styleFrom(
+                primary: Colors.red,
+              ),
+            ),
+            const Text(
+              'Add Albums'
+            ),
+            ElevatedButton(
+              child: const Text(
+                'View Albums',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              onPressed: () => navigateToMyAlbumsScreen(context),
+              style: ElevatedButton.styleFrom(
+                primary: Colors.green,
+              ),
+            ),
+          ],
+        ),
+        centerTitle: true,
+      ),
+      body: Container(
+        margin: const EdgeInsets.only(left: 20, right: 20),
+        child: SingleChildScrollView(
+          child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    ElevatedButton(
+                      onPressed: () => {
+                        openAddAlbumModal(context)
+                      },
+                      child: Text('Add'),
+                    ),
+                    OutlinedButton(
+                      onPressed: () => {  },
+                      child: const Text(
+                        'Scan Albums'
+                      ),
+                    ),
+                    IconButton(
+                      iconSize: 40,
+                      color: Colors.pinkAccent,
+                      icon: const Icon(
+                        Icons.favorite_rounded,
+                      ),
+                      onPressed: () => _showToast(context),
+                    )
+                  ],
+                ),
+                AlbumListWidget(albums),
+              ],
+            ),
+        ),
       ),
     );
   }

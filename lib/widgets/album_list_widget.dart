@@ -15,7 +15,7 @@ class AlbumListWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 600,
+      height: 650,
       child: ListView.builder(// Listview(children[]) does NOT create children lazily. Listview.builder() does create Lazily.
         itemBuilder: (context, index) {
           return ClipPath(
@@ -36,7 +36,6 @@ class AlbumListWidget extends StatelessWidget {
                             'assets/images/no-image-available.svg.png',
                             scale: 1,
                           ) :
-
                           const ExactAssetImage(
                             'assets/images/cat-stevens.jpeg',
                             scale: 1,

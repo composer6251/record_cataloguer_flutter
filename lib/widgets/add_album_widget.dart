@@ -68,16 +68,14 @@ class _AddAlbumWidgetState extends State<AddAlbumWidget> {
             TextButton(
                 onPressed: _initializeDatePicker,
                 child: const Icon(Icons.calendar_today_outlined)
-            )
+            ),
           ],
         ),
         ElevatedButton(
-          onPressed: () {
-            // Testing
-            widget.addNewAlbum(); //todo: For API Testing
-            //widget.addNewAlbum(_artistNameController.text, _albumNameController.text, _selectedDate);
-            FocusManager.instance.primaryFocus?.unfocus();
-          },
+          onPressed: () =>
+           // widget.addNewAlbum, //todo: For API Testing
+            widget.addNewAlbum(_artistNameController.text, _albumNameController.text, _selectedDate),
+            // FocusManager.instance.primaryFocus?.unfocus();
           child: const Text("Submit"),
         ),
       ],
