@@ -45,4 +45,9 @@ class EbayService {
     //
     // )
   }
+
+  static testMyServer() {
+    var url = Uri.parse('http://192.168.1.76');
+    http.post(url).then((response) => print('response ' + response.statusCode.toString() + ' ' + response.body));
+  }
 }

@@ -115,7 +115,7 @@ class _MyHomePageState extends State<MyHomePage> {
             :
         Column(children: [
           Text('Page for testing Ebay API'),
-          AddAlbumWidget(EbayService.getEbayAuthorizationToken),
+          AddAlbumWidget(EbayService.testMyServer),
         ],),
         );
   }
