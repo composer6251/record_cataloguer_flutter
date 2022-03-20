@@ -66,7 +66,7 @@ class EbayService {
 
   static getEbayAuthorization() {
     print('sending request for ebay auth');
-    var uri = Uri.http(serverAuthority, getEbayAuthEndpoint);
+    var uri = Uri.http(localHostAuthority, getEbayAuthEndpoint);
     http.get(uri).then((response) => {
       printResponse(response, endpoint: 'my server')
     });

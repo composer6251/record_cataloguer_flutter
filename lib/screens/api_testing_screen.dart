@@ -25,10 +25,10 @@ class _ApiTestingScreenState extends State<ApiTestingScreen> {
       ),
       body: Column(
         children: [
-          AddAlbumWidget( () => {} ),
-          SizedBox(
-            height: 80,
-          ),
+          // AddAlbumWidget( () => getEbayAuthorization() ),
+          // SizedBox(
+          //   height: 80,
+          // ),
           ElevatedButton(
             child: const Text('Test Sandbox Authorization Endpoint'),
             onPressed: () => getEbayAuthorization(),
