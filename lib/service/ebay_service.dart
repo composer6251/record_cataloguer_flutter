@@ -66,14 +66,15 @@ class EbayService {
 
   static getEbayAuthorization() {
     print('sending request for ebay auth');
-    var uri = Uri.http(localHostAuthority, getEbayAuthEndpoint);
+    var uri = Uri.http(sgLaptopAuthority, getEbayAuthEndpoint);
+    printRequest(uri);
     http.get(uri).then((response) => {
       printResponse(response, endpoint: 'my server')
     });
   }
 
   static printRequest(Uri uri) {
-    print('sending request Uri:' + uri.toString());
+    print('sending request Uri: ' + uri.toString());
   }
 
   static printResponse(Response response, {String endpoint = 'endpoint'}) {
