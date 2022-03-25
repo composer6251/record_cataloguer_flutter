@@ -6,30 +6,32 @@ class EbayService {
 
   static String ebayAuthorizationToken = '';
 
-  // static getEbayAuthorizationToken() {
-  //   var url = Uri.https(ebaySandboxApiBaseUrl, ebaySandboxAuthorizationApiPath);
-  //   http.post(
-  //       url,
-  //       headers: <String, String>{
-  //         'Content-Type': 'application/x-www-form-urlencoded',
-  //         'Authorization': 'Basic $encodedClientIdSecret',
-  //       },
-  //       body: {
-  //         'grant_type': 'client_credentials'
-  //       }
-  //   ).then((response) => {
-  //       if (response.statusCode == 200){
-  //         ebayAuthorizationToken = response.body,
-  //         print(
-  //             'API response code: ' + response.statusCode.toString() +
-  //                 '\nand body: ' + response.body.toString())
-  //       }
-  //       else {
-  //           log('Received error from ebay auth endpoint with status code: ' +
-  //               response.statusCode.toString() + ' and message: ' + response.body)
-  //       }
-  //   });
-  // }
+  static getEbayAuthorizationToken() {
+    var url = Uri.https(ebaySandboxApiBaseUrl, ebaySandboxAuthorizationApiPath);
+    Map<String, String> headers = Map();
+    headers.putIfAbsent('Authorization', () => 'Basic $encodedClientIdSecret');
+    headers.putIfAbsent('Content-Type', () => 'application/x-www-form-urlencoded');
+    Map<String, String> body = Map();
+    body.putIfAbsent('grant_type', () => 'client_credentials');
+    print('sending request url: ' + url.toString() + 'request headers: ' + headers.toString() + ' and body: ' + body.toString() );
+    http.post(
+        url,
+        headers: headers,
+        body: body,
+    ).then((response) => {
+      print('request headers: ' + headers.toString() + ' and body: ' + body.toString()),
+        if (response.statusCode == 200){
+          ebayAuthorizationToken = response.body,
+          print(
+              'API response code: ' + response.statusCode.toString() +
+                  '\nand body: ' + response.body.toString())
+        }
+        else {
+            print('Received error from ebay auth endpoint with status code: ' +
+                response.statusCode.toString() + ' and message: ' + response.body)
+        }
+    });
+  }
 
   //todo: Finish!!!!
   // static getEbayApiAlbum (String url, String queryParams) {
@@ -66,7 +68,7 @@ class EbayService {
 
   static getEbayAuthorization() {
     print('sending request for ebay auth');
-    var uri = Uri.http(sgLaptopAuthority, getEbayAuthEndpoint);
+    var uri = Uri.http(myLaptopApiAuthority, getEbayAuthEndpoint);
     printRequest(uri);
     http.get(uri).then((response) => {
       printResponse(response, endpoint: 'my server')

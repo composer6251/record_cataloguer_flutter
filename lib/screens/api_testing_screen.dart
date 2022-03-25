@@ -30,8 +30,12 @@ class _ApiTestingScreenState extends State<ApiTestingScreen> {
           //   height: 80,
           // ),
           ElevatedButton(
-            child: const Text('Test Sandbox Authorization Endpoint'),
+            child: const Text('Test My Api Sandbox Authorization Endpoint'),
             onPressed: () => getEbayAuthorization(),
+          ),
+          ElevatedButton(
+            child: const Text('Test Ebay Sandbox Authorization Endpoint'),
+            onPressed: () => EbayService.getEbayAuthorizationToken(),
           ),
       ],
       ),
