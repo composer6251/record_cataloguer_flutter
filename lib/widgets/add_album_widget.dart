@@ -39,44 +39,50 @@ class _AddAlbumWidgetState extends State<AddAlbumWidget> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        TextField(
-          autofocus: true,
-          decoration: const InputDecoration(
+        Flexible(
+          child: TextField(
+            autofocus: true,
+            decoration: const InputDecoration(
   //          fillColor: Theme.of(context).primaryColorDark,
-            labelText: 'Artist',
-            floatingLabelStyle: TextStyle(
-            fontFamily: 'Times New Roman'
-          )),
-          controller: _artistNameController,
-        ),
-        TextField(
-          decoration: const InputDecoration(
-            labelText: 'Album',
-            floatingLabelStyle: TextStyle(
-                fontFamily: 'Times New Roman',
-            ),
-            floatingLabelBehavior: FloatingLabelBehavior.auto
+              labelText: 'Artist',
+              floatingLabelStyle: TextStyle(
+              fontFamily: 'Times New Roman'
+            )),
+            controller: _artistNameController,
           ),
-          controller: _albumNameController,
         ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Expanded(
-                child: Text('Date Entered:  ${DateFormat.yMd().format(_selectedDate)}')
+        Flexible(
+          child: TextField(
+            decoration: const InputDecoration(
+              labelText: 'Album',
+              floatingLabelStyle: TextStyle(
+                  fontFamily: 'Times New Roman',
+              ),
+              floatingLabelBehavior: FloatingLabelBehavior.auto
             ),
-            TextButton(
-                onPressed: _initializeDatePicker,
-                child: const Icon(Icons.calendar_today_outlined)
-            ),
-          ],
+            controller: _albumNameController,
+          ),
         ),
-        ElevatedButton(
-          onPressed: () =>
-           // widget.addNewAlbum, //todo: For API Testing
-            widget.addNewAlbum(_artistNameController.text, _albumNameController.text, _selectedDate),
-            // FocusManager.instance.primaryFocus?.unfocus();
-          child: const Text("Submit"),
+        Flexible(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text('Date Entered:  ${DateFormat.yMd().format(_selectedDate)}'),
+              TextButton(
+                  onPressed: _initializeDatePicker,
+                  child: const Icon(Icons.calendar_today_outlined)
+              ),
+            ],
+          ),
+        ),
+        Flexible(
+          child: ElevatedButton(
+            onPressed: () =>
+             // widget.addNewAlbum, //todo: For API Testing
+              widget.addNewAlbum(_artistNameController.text, _albumNameController.text, _selectedDate),
+              // FocusManager.instance.primaryFocus?.unfocus();
+            child: const Text("Submit"),
+          ),
         ),
       ],
     );
