@@ -183,13 +183,14 @@ class _MyAlbumsScreenState extends State<MyAlbumsScreen> {
 
 class CustomSearchDelegate extends SearchDelegate {
 
+  // Handles return to page
   @override
   Widget? buildLeading(BuildContext context) {
     return IconButton(
       icon: Icon(
           Icons.arrow_back,
       ),
-      onPressed: () {},
+      onPressed: () => close(context, null), // close search bar
     );
     // TODO: implement buildLeading
   }
@@ -200,20 +201,43 @@ class CustomSearchDelegate extends SearchDelegate {
         icon: const Icon(
           Icons.clear,
         ),
-        onPressed: () {},
+        onPressed: () {
+          if (query.isEmpty) {
+            close(context, null);
+          }
+          else {
+            query = '';
+          }
+        },
       )
     ];
   }
 
+  // Build Result of search
   @override
   Widget buildResults(BuildContext context) {
-    // TODO: implement buildResults
-    throw UnimplementedError();
+    // create var to hold album, artist, and ????
+    // loop through albums, to get album and artist to create Map<String, Album>. Allowing for duplicate Albums for both artist and name
+    List<Album> searchAlbums = [];
+    List<Album> testAlbums = albumList.where((album) => album.albumName.toLowerCase().contains(query.toLowerCase())).toList();
+    for (var album in albumList) {
+      if (album.albumArtist.toLowerCase().contains(query.toLowerCase()) || album.albumName.toLowerCase().contains(query.toLowerCase())){
+        print('adding album to search: ' + album.toString());
+        searchAlbums.add(album);
+      }
+    }
+
+    // see if query.contains album or artist
+
+    return ListView.builder(
+      itemBuilder: (context, index) {
+        return AlbumListWidget(testAlbums);
+      },
+    );
   }
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    // TODO: implement buildSuggestions
-    throw UnimplementedError();
+      return Text('No suggestions');
   }
 }
