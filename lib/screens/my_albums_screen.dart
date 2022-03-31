@@ -71,8 +71,19 @@ class _MyAlbumsScreenState extends State<MyAlbumsScreen> {
     return Scaffold(
       appBar: AppBar(
           actions: <Widget> [
+            IconButton(
+              onPressed: () {
+                showSearch(
+                  context: context,
+                  delegate: CustomSearchDelegate(),
+                );
+              },
+              icon: const Icon(
+                  Icons.search
+              ),
+            ),
             ElevatedButton(
-              style: ButtonStyle(
+              style: const ButtonStyle(
               ),
               child: const FittedBox(
                 child: Text(
@@ -167,5 +178,42 @@ class _MyAlbumsScreenState extends State<MyAlbumsScreen> {
         )
       ),
     );
+  }
+}
+
+class CustomSearchDelegate extends SearchDelegate {
+
+  @override
+  Widget? buildLeading(BuildContext context) {
+    return IconButton(
+      icon: Icon(
+          Icons.arrow_back,
+      ),
+      onPressed: () {},
+    );
+    // TODO: implement buildLeading
+  }
+  @override
+  List<Widget>? buildActions(BuildContext context) {
+    return [
+      IconButton(
+        icon: const Icon(
+          Icons.clear,
+        ),
+        onPressed: () {},
+      )
+    ];
+  }
+
+  @override
+  Widget buildResults(BuildContext context) {
+    // TODO: implement buildResults
+    throw UnimplementedError();
+  }
+
+  @override
+  Widget buildSuggestions(BuildContext context) {
+    // TODO: implement buildSuggestions
+    throw UnimplementedError();
   }
 }
