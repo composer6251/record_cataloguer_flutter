@@ -76,7 +76,7 @@ class _MyAlbumsScreenState extends State<MyAlbumsScreen> {
               ),
               child: const FittedBox(
                 child: Text(
-                    'Manage'
+                    'Filter'
                 ),
               ),
               onPressed: () => navigateToManageMyAlbums(context),
@@ -116,45 +116,53 @@ class _MyAlbumsScreenState extends State<MyAlbumsScreen> {
       ),
       bottomNavigationBar: (
         BottomAppBar(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              ElevatedButton(
-                child: Icon(
-                  Icons.add_a_photo,
+          child: Container(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                ElevatedButton(
+                  child: Icon(
+                    Icons.add_a_photo,
+                    size: 25,
+                  ),
+                  onPressed: () => {},
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.pink,
+                    shape: const CircleBorder(),
+                    padding: EdgeInsets.all(20),
+                    elevation: 10,
+                  ),
                 ),
-                onPressed: () => {},
-                style: ElevatedButton.styleFrom(
-                  shape: const CircleBorder(),
-                  padding: EdgeInsets.all(20),
-                  elevation: 10,
+                ElevatedButton(
+                  child: Icon(
+                    Icons.add,
+                    size: 25,
+                  ),
+                  onPressed: () => {
+                    openAddAlbumModal(context)
+                  },
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.green,
+                    shape: const CircleBorder(),
+                    padding: EdgeInsets.all(20),
+                    elevation: 10,
+                  ),
                 ),
-              ),
-              ElevatedButton(
-                child: Icon(
-                  Icons.add,
+                ElevatedButton(
+                  child: Icon(
+                    Icons.delete,
+                    size: 25,
+                  ),
+                  onPressed: () => {},
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.red,
+                    shape: const CircleBorder(),
+                    padding: EdgeInsets.all(20),
+                    elevation: 10,
+                  ),
                 ),
-                onPressed: () => {
-                  openAddAlbumModal(context)
-                },
-                style: ElevatedButton.styleFrom(
-                  shape: const CircleBorder(),
-                  padding: EdgeInsets.all(20),
-                  elevation: 10,
-                ),
-              ),
-              ElevatedButton(
-                child: Icon(
-                  Icons.delete,
-                ),
-                onPressed: () => {},
-                style: ElevatedButton.styleFrom(
-                  shape: const CircleBorder(),
-                  padding: EdgeInsets.all(20),
-                  elevation: 10,
-                ),
-              ),
-            ],
+              ],
+            ),
           ),
         )
       ),
