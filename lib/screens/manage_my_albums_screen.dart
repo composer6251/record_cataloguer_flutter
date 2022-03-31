@@ -65,7 +65,7 @@ class _ManageMyAlbumsScreenState extends State<ManageMyAlbumsScreen> {
   }
 
   openAddAlbumModal(BuildContext ctx) {
-    showModalBottomSheet(context: ctx, builder: (_) {
+    showModalBottomSheet(clipBehavior: Clip.hardEdge, context: ctx, builder: (_) {
       return AddAlbumWidget(_addNewAlbum);
     },);
   }
@@ -78,7 +78,7 @@ class _ManageMyAlbumsScreenState extends State<ManageMyAlbumsScreen> {
 
   navigateToApiTestingScreen(BuildContext ctx) {
     Navigator.of(ctx).push(MaterialPageRoute(builder: (_) {
-      return ApiTestingScreen();
+      return const ApiTestingScreen();
     }));
   }
 
@@ -111,30 +111,39 @@ class _ManageMyAlbumsScreenState extends State<ManageMyAlbumsScreen> {
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            ElevatedButton(
-              child: const FittedBox(
-                  child: Text(
-                    'API Testing'
-                  )
-              ),
-              onPressed: () => navigateToApiTestingScreen(context),
-              style: ElevatedButton.styleFrom(
-                primary: Colors.red,
-              ),
-            ),
-            const Text(
-              'Add Albums'
-            ),
-            ElevatedButton(
-              child: const Text(
-                'View Albums',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
+            Flexible(
+              flex: 1,
+              child: ElevatedButton(
+                child: const FittedBox(
+                    child: Text(
+                      'API Testing'
+                    )
+                ),
+                onPressed: () => navigateToApiTestingScreen(context),
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.red,
                 ),
               ),
-              onPressed: () => navigateToMyAlbumsScreen(context),
-              style: ElevatedButton.styleFrom(
-                primary: Colors.green,
+            ),
+            Flexible(
+              flex: 2,
+              child: const Text(
+                'Manage Albums'
+              ),
+            ),
+            Flexible(
+              flex: 1,
+              child: ElevatedButton(
+                child: const Text(
+                  'View Albums',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                onPressed: () => navigateToMyAlbumsScreen(context),
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.green,
+                ),
               ),
             ),
           ],

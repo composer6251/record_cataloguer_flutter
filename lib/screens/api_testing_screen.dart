@@ -10,8 +10,8 @@ class ApiTestingScreen extends StatefulWidget {
   State<ApiTestingScreen> createState() => _ApiTestingScreenState();
 }
 
-void callEbaySearchEndpointSandbox(url) {
-  EbayService.getEbayApiAlbum(url);
+void getEbayAuthorization() {
+  EbayService.getEbayAuthorization();
 }
 
 class _ApiTestingScreenState extends State<ApiTestingScreen> {
@@ -25,14 +25,18 @@ class _ApiTestingScreenState extends State<ApiTestingScreen> {
       ),
       body: Column(
         children: [
-          AddAlbumWidget(EbayService.getEbayAuthorizationToken),
-          SizedBox(
-            height: 80,
+          // AddAlbumWidget( () => getEbayAuthorization() ),
+          // SizedBox(
+          //   height: 80,
+          // ),
+          ElevatedButton(
+            child: const Text('Test My Api Sandbox Authorization Endpoint'),
+            onPressed: () => getEbayAuthorization(),
           ),
           ElevatedButton(
-            child: Text('Test Sandbox Search Endpoint'),
-            onPressed: () => callEbaySearchEndpointSandbox(ebaySandboxApiBaseUrl + catalogApiSearchUrl + 'q=catstevens'),
-          )
+            child: const Text('Test Ebay Sandbox Authorization Endpoint'),
+            onPressed: () => EbayService.getEbayAuthorizationToken(),
+          ),
       ],
       ),
     );

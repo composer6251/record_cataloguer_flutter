@@ -69,10 +69,11 @@ class AlbumListWidget extends StatelessWidget {
                       ],
                     ),
                     Container(
-                        padding: EdgeInsets.only(right: 10),
+                        padding: EdgeInsets.only(right: 40),
                         width: 100,
                         alignment: Alignment.centerRight,
-                        child: Text('x${albums[index].albumQuantity}', style: const TextStyle(fontSize: 20),
+                        child: Text(
+                          'x${albums[index].albumQuantity}', style: const TextStyle(fontSize: 20),
                         )
                     )
                   ],
