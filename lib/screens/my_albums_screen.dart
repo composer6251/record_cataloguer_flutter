@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:record_cataloguer/data/album_list_data.dart';
 import 'package:record_cataloguer/model/album.dart';
 import 'package:record_cataloguer/screens/manage_my_albums_screen.dart';
+import 'package:record_cataloguer/searchalbums/search_albums.dart';
 import 'package:record_cataloguer/widgets/add_album_widget.dart';
 import 'package:record_cataloguer/widgets/album_list_widget.dart';
 
@@ -46,7 +47,7 @@ class _MyAlbumsScreenState extends State<MyAlbumsScreen> {
       return;
     }
     final newAlbum = Album(
-        albumImage: '',
+        albumImageUrl: '',
         albumArtist: artist,
         albumName: album, albumPrice: 0,
         albumQuantity: 1,
@@ -75,7 +76,7 @@ class _MyAlbumsScreenState extends State<MyAlbumsScreen> {
               onPressed: () {
                 showSearch(
                   context: context,
-                  delegate: CustomSearchDelegate(),
+                  delegate: SearchAlbums(),
                 );
               },
               icon: const Icon(
@@ -178,66 +179,5 @@ class _MyAlbumsScreenState extends State<MyAlbumsScreen> {
         )
       ),
     );
-  }
-}
-
-class CustomSearchDelegate extends SearchDelegate {
-
-  // Handles return to page
-  @override
-  Widget? buildLeading(BuildContext context) {
-    return IconButton(
-      icon: Icon(
-          Icons.arrow_back,
-      ),
-      onPressed: () => close(context, null), // close search bar
-    );
-    // TODO: implement buildLeading
-  }
-  @override
-  List<Widget>? buildActions(BuildContext context) {
-    return [
-      IconButton(
-        icon: const Icon(
-          Icons.clear,
-        ),
-        onPressed: () {
-          if (query.isEmpty) {
-            close(context, null);
-          }
-          else {
-            query = '';
-          }
-        },
-      )
-    ];
-  }
-
-  // Build Result of search
-  @override
-  Widget buildResults(BuildContext context) {
-    // create var to hold album, artist, and ????
-    // loop through albums, to get album and artist to create Map<String, Album>. Allowing for duplicate Albums for both artist and name
-    List<Album> searchAlbums = [];
-    List<Album> testAlbums = albumList.where((album) => album.albumName.toLowerCase().contains(query.toLowerCase())).toList();
-    for (var album in albumList) {
-      if (album.albumArtist.toLowerCase().contains(query.toLowerCase()) || album.albumName.toLowerCase().contains(query.toLowerCase())){
-        print('adding album to search: ' + album.toString());
-        searchAlbums.add(album);
-      }
-    }
-
-    // see if query.contains album or artist
-
-    return ListView.builder(
-      itemBuilder: (context, index) {
-        return AlbumListWidget(testAlbums);
-      },
-    );
-  }
-
-  @override
-  Widget buildSuggestions(BuildContext context) {
-      return Text('No suggestions');
   }
 }

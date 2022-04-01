@@ -26,55 +26,65 @@ class AlbumListWidget extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Container(
-                      width: 100.00,
-                      height: 100.00,
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: albums[index].albumImage == '' ?
-                          const ExactAssetImage(
-                            'assets/images/no-image-available.svg.png',
-                            scale: 1,
-                          ) :
-                          const ExactAssetImage(
-                            'assets/images/cat-stevens.jpeg',
-                            scale: 1,
+                    Flexible(
+                      flex: 1,
+                      child: Container(
+                        width: 100.00,
+                        height: 100.00,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image: albums[index].albumImageUrl == '' ?
+                            const ExactAssetImage(
+                              'assets/images/no-image-available.svg.png',
+                              scale: 1,
+                            ) :
+                            ExactAssetImage(
+                              albums[index].albumImageUrl,
+                              scale: 1,
+                            ),
                           ),
                         ),
                       ),
                     ),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Text(albums[index].albumName,
-                            overflow: TextOverflow.ellipsis,
-                            style: const TextStyle(
-                                fontSize: 20, fontWeight: FontWeight.bold)),
-                        Text(DateFormat.yMMMd().format(albums[index].scannedDate)),
-                        Container(
-                          padding: const EdgeInsets.all(7),
-                            decoration: BoxDecoration(
-                              border: Border.all(color: Theme.of(context).primaryColorLight, width: 2),
-                              borderRadius: const BorderRadius.all(Radius.elliptical(1, 10)),
-                            ),
-                            child: Text(
-                              '\$${albums[index].albumPrice.toStringAsFixed(2)}',
+                    Flexible(
+                      flex: 1,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Text(albums[index].albumName,
+                              overflow: TextOverflow.ellipsis,
                               style: const TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
-                                  decoration: TextDecoration.underline),
-                            )
-                        ),
-                      ],
+                                  fontSize: 15, fontWeight: FontWeight.bold)),
+                          Text(albums[index].albumArtist),
+                          Text(DateFormat.yMMMd().format(albums[index].scannedDate)),
+                          Container(
+                            padding: const EdgeInsets.all(7),
+                              decoration: BoxDecoration(
+                                border: Border.all(color: Theme.of(context).primaryColorLight, width: 2),
+                                borderRadius: const BorderRadius.all(Radius.elliptical(1, 10)),
+                              ),
+                              child: Text(
+                                '\$${albums[index].albumPrice.toStringAsFixed(2)}',
+                                style: const TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                    decoration: TextDecoration.underline),
+                              )
+                          ),
+                        ],
+                      ),
                     ),
-                    Container(
-                        padding: EdgeInsets.only(right: 40),
-                        width: 100,
-                        alignment: Alignment.centerRight,
-                        child: Text(
-                          'x${albums[index].albumQuantity}', style: const TextStyle(fontSize: 20),
-                        )
+                    Flexible(
+                      flex: 1,
+                      child: Container(
+                          padding: EdgeInsets.only(right: 40),
+                          width: 100,
+                          alignment: Alignment.centerRight,
+                          child: Text(
+                            'x${albums[index].albumQuantity}', style: const TextStyle(fontSize: 20),
+                          )
+                      ),
                     )
                   ],
                 ),

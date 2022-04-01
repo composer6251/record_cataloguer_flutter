@@ -52,7 +52,7 @@ class _ManageMyAlbumsScreenState extends State<ManageMyAlbumsScreen> {
       return;
     }
     final newAlbum = Album(
-        albumImage: '',
+        albumImageUrl: '',
         albumArtist: artist,
         albumName: album, albumPrice: 0,
         albumQuantity: 1,

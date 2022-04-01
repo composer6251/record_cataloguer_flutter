@@ -1,7 +1,7 @@
 
 class Album {
   // todo: Keep as image or make String for albumImage
-  late String albumImage;
+  late String albumImageUrl;
   late String albumArtist;
   late String albumName;
   late double albumPrice;
@@ -10,7 +10,7 @@ class Album {
   late DateTime scannedDate;
 
   Album({
-    required this.albumImage,
+    required this.albumImageUrl,
     required this.albumArtist,
     required this.albumName,
     required this.albumPrice,
@@ -23,7 +23,7 @@ class Album {
   // todo: Use correct JSON fields
   factory Album.fromJson(Map<String, dynamic> json) {
     return Album(
-      albumImage: '',
+      albumImageUrl: '',
         albumArtist: json['artist'],
         albumName: json['name'],
         albumPrice: json['price'],

@@ -4,6 +4,7 @@ An application to assist in learning the notes of the staff along with notes on 
 
 ## Getting Started
 
+##Flutter Sample Readme
 This project is a starting point for a Flutter application.
 
 A few resources to get you started if this is your first Flutter project:
@@ -14,6 +15,10 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter, view our
 [online documentation](https://flutter.dev/docs), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+
+
+
+## Project Setup Instructions
 
 Installing/Setting Up Flutter SDK
 1. Download Flutter SDK:
@@ -84,9 +89,9 @@ Run brew install cocoapods
 
 Verify all platforms are ready for development
 
-Run flutter doctor -v and check the output
+Run flutter doctor -v and check the output. This will tell you if everything is installed correctly
 
-Troubleshooting error messages
+##Troubleshooting error messages
 When launching the emulator in Android Studio
 1. The emulator process for AVD has terminated
 
