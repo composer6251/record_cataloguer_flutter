@@ -66,7 +66,7 @@ class _ManageMyAlbumsScreenState extends State<ManageMyAlbumsScreen> {
 
   openAddAlbumModal(BuildContext ctx) {
     showModalBottomSheet(clipBehavior: Clip.hardEdge, context: ctx, builder: (_) {
-      return AddAlbumWidget(_addNewAlbum);
+      return AddAlbumWidget();
     },);
   }
 
@@ -170,14 +170,14 @@ class _ManageMyAlbumsScreenState extends State<ManageMyAlbumsScreen> {
                         'Scan Albums'
                       ),
                     ),
-                    IconButton(
-                      iconSize: 40,
-                      color: Colors.pinkAccent,
-                      icon: const Icon(
-                        Icons.favorite_rounded,
-                      ),
-                      onPressed: () => _showToast(context),
-                    )
+                    // IconButton(
+                    //   iconSize: 40,
+                    //   color: Colors.pinkAccent,
+                    //   icon: const Icon(
+                    //     Icons.favorite_rounded,
+                    //   ),
+                    //   onPressed: () => _showToast(context),
+                    // )
                   ],
                 ),
                 AlbumListWidget(albums),

@@ -38,8 +38,8 @@ class SearchAlbums extends SearchDelegate {
   // Result calculated on submission
   @override
   Widget buildResults(BuildContext context) {
-    List<Album> testAlbums = albumList.where((album) => album.albumName.toLowerCase().contains(query.toLowerCase())).toList();
-    return AlbumListWidget(testAlbums);
+    List<Album> searchedAlbums = albumList.where((album) => album.albumName.toLowerCase().contains(query.toLowerCase())).toList();
+    return AlbumListWidget(searchedAlbums);
   }
 
   @override

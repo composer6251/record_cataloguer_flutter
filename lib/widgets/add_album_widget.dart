@@ -2,20 +2,57 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:record_cataloguer/data/album_list_data.dart';
+import 'package:record_cataloguer/model/album.dart';
 
 /***
  * This class is used to manually enter an album if scanning fails. It should still reach out to EBAY....etc to get album info.
  */
 class AddAlbumWidget extends StatefulWidget {
-  final Function addNewAlbum;
 
-  AddAlbumWidget(this.addNewAlbum, {Key? key}) : super(key: key);
+  AddAlbumWidget({Key? key}) : super(key: key);
 
   @override
   State<AddAlbumWidget> createState() => _AddAlbumWidgetState();
 }
 
 class _AddAlbumWidgetState extends State<AddAlbumWidget> {
+
+  showAlertDialog(BuildContext ctx) {
+    AlertDialog alert = const AlertDialog(
+      title: Text('Error'),
+      content: Text(
+          'Please complete both Artist and Album fields before submitting'),
+    );
+
+    showDialog(
+        context: ctx,
+        builder: (BuildContext context) {
+          return alert;
+        });
+  }
+
+  void _addNewAlbum(String artist, String album, DateTime date) {
+    print('adding new album: ' + artist);
+    if (artist == '' || album == '') {
+      // todo: Save input text if erroring out
+      showAlertDialog(context);
+      return;
+    }
+    final newAlbum = Album(
+        albumImageUrl: '',
+        albumArtist: artist,
+        albumName: album,
+        albumPrice: 0,
+        albumQuantity: 1,
+        upc: BigInt.from(0),
+        scannedDate: date);
+
+    setState(() {
+      albumList.insert(0, newAlbum);
+    });
+  }
+
   final _artistNameController = TextEditingController();
 
   final _albumNameController = TextEditingController();
@@ -24,9 +61,9 @@ class _AddAlbumWidgetState extends State<AddAlbumWidget> {
 
   void _initializeDatePicker() {
     showDatePicker(
-        context: context, 
-        initialDate: DateTime.now(), 
-        firstDate: DateTime(2022), 
+        context: context,
+        initialDate: DateTime.now(),
+        firstDate: DateTime(2022),
         lastDate: DateTime.now()
     ).then((pickedDate) => {
       setState(() {
@@ -79,7 +116,7 @@ class _AddAlbumWidgetState extends State<AddAlbumWidget> {
           child: ElevatedButton(
             onPressed: () =>
              // widget.addNewAlbum, //todo: For API Testing
-              widget.addNewAlbum(_artistNameController.text, _albumNameController.text, _selectedDate),
+              _addNewAlbum(_artistNameController.text, _albumNameController.text, _selectedDate),
               // FocusManager.instance.primaryFocus?.unfocus();
             child: const Text("Submit"),
           ),
