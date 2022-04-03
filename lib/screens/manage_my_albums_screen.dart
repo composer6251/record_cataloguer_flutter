@@ -26,7 +26,7 @@ class ManageMyAlbumsScreen extends StatefulWidget {
 }
 
 class _ManageMyAlbumsScreenState extends State<ManageMyAlbumsScreen> {
-    List<Album> albums = [];
+    List<AlbumModel> albums = [];
     List<int> usedIndices = [];
 
   showAlertDialog(BuildContext ctx){
@@ -51,7 +51,7 @@ class _ManageMyAlbumsScreenState extends State<ManageMyAlbumsScreen> {
       showAlertDialog(context);
       return;
     }
-    final newAlbum = Album(
+    final newAlbum = AlbumModel(
         albumImageUrl: '',
         albumArtist: artist,
         albumName: album, albumPrice: 0,

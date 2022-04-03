@@ -22,53 +22,6 @@ class _MyAlbumsScreenState extends State<MyAlbumsScreen> {
     }));
   }
 
-  // TODO: IF YOU ARE LEAVING THE ADD ALBUM FUNCTIONALITY, THEN FIGURE OUT WHAT TO DO WITH DUPE CODE IN MANAGE_MY_ALBUMS_SCREEN
-
-  // showAlertDialog(BuildContext ctx) {
-  //   AlertDialog alert = const AlertDialog(
-  //     title: Text('Error'),
-  //     content: Text(
-  //         'Please complete both Artist and Album fields before submitting'),
-  //   );
-  //
-  //   showDialog(
-  //       context: ctx,
-  //       builder: (BuildContext context) {
-  //         return alert;
-  //       });
-  // }
-
-  // void _addNewAlbum(String artist, String album, DateTime date) {
-  //   if (artist == '' || album == '') {
-  //     // todo: Save input text if erroring out
-  //     showAlertDialog(context);
-  //     return;
-  //   }
-  //   final newAlbum = Album(
-  //       albumImageUrl: '',
-  //       albumArtist: artist,
-  //       albumName: album,
-  //       albumPrice: 0,
-  //       albumQuantity: 1,
-  //       upc: BigInt.from(0),
-  //       scannedDate: date);
-  //
-  //   setState(() {
-  //     albumList.insert(0, newAlbum);
-  //   });
-  // }
-  //
-  // openAddAlbumModal(BuildContext ctx) {
-  //   showModalBottomSheet(
-  //     clipBehavior: Clip.hardEdge,
-  //     context: ctx,
-  //     builder: (_) {
-  //       return AddAlbumWidget(_addNewAlbum);
-  //     },
-  //   );
-  // }
-  /***TODO: END DUPE CODE ***/
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

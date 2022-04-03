@@ -1,5 +1,7 @@
 
-class Album {
+import 'package:flutter/cupertino.dart';
+
+class AlbumModel extends ChangeNotifier{
   // todo: Keep as image or make String for albumImage
   late String albumImageUrl;
   late String albumArtist;
@@ -9,7 +11,7 @@ class Album {
   late BigInt upc;
   late DateTime scannedDate;
 
-  Album({
+  AlbumModel({
     required this.albumImageUrl,
     required this.albumArtist,
     required this.albumName,
@@ -19,10 +21,12 @@ class Album {
     required this.scannedDate,
   });
 
+
+
   // factory method to parse response object to Album object from JSON
   // todo: Use correct JSON fields
-  factory Album.fromJson(Map<String, dynamic> json) {
-    return Album(
+  factory AlbumModel.fromJson(Map<String, dynamic> json) {
+    return AlbumModel(
       albumImageUrl: '',
         albumArtist: json['artist'],
         albumName: json['name'],

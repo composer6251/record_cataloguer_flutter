@@ -14,7 +14,7 @@ import 'album_bottom_button_bar.dart';
  */
 
 class AlbumListWidget extends StatefulWidget {
-  final List<Album> albums;
+  final List<AlbumModel> albums;
   const AlbumListWidget(this.albums, {Key? key}) : super(key: key);
 
   @override

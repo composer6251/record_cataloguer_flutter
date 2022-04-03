@@ -39,7 +39,7 @@ class _AddAlbumWidgetState extends State<AddAlbumWidget> {
       showAlertDialog(context);
       return;
     }
-    final newAlbum = Album(
+    final newAlbum = AlbumModel(
         albumImageUrl: '',
         albumArtist: artist,
         albumName: album,
