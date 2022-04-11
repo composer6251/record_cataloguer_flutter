@@ -4,12 +4,18 @@ import 'package:provider/provider.dart';
 import 'package:record_cataloguer/data/album_list_data.dart';
 import 'package:record_cataloguer/model/album_list_model.dart';
 import 'package:record_cataloguer/screens/my_albums_screen.dart';
+import 'data/album_list_data.dart';
 
 import 'model/album.dart';
 
+///PROVIDERS
+///Model is the ChangeNotifier
+///ChangeNotifier
+///
+
 void main() => runApp(ChangeNotifierProvider(
     // register changeNotifier
-    create: (context) => AlbumListModel(),
+    create: (context) => AlbumListModel(albumList),
     child: const MyApp()));
 
 class MyApp extends StatefulWidget {
@@ -20,7 +26,6 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  List<AlbumModel> albumList = [];
 
   @override
   Widget build(BuildContext context) {
@@ -38,9 +43,10 @@ class _MyAppState extends State<MyApp> {
               fontWeight: FontWeight.bold,
             ),
           )),
-      home: Consumer<AlbumListModel>(builder: (context, albumList, child) {
-        return MyAlbumsScreen();
-      }),
+      home: ChangeNotifierProvider( // NotifierProvider goes on the PARENT of the child/children that need the data
+        create: (context) => AlbumListModel(albumList),
+        child: MyAlbumsScreen(),
+      )
     );
   }
 }

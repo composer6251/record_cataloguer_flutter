@@ -10,14 +10,23 @@ import 'package:record_cataloguer/model/album.dart';
  */
 
 class AlbumListModel extends ChangeNotifier {
-  final List<AlbumModel> _albums = [];
+  final List<AlbumModel> _albums;
+
+  AlbumListModel(this._albums);
 
   //Instantiates ListView which accepts List<AlbumModel>
-  UnmodifiableListView<AlbumModel> get items => UnmodifiableListView(_albums);
+  // UnmodifiableListView<AlbumModel> get albums => UnmodifiableListView(_albums);
+
+  get albumList => _albums;
 
   // CRUD ops
   void add(AlbumModel album) {
     _albums.add(album);
     notifyListeners();
   }
+  // add all
+
+// delete
+
+// update
 }

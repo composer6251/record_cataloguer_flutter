@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:english_words/english_words.dart';
+import 'package:provider/provider.dart';
 import 'package:record_cataloguer/data/album_list_data.dart';
 import 'package:record_cataloguer/model/album.dart';
+import 'package:record_cataloguer/model/album_list_model.dart';
 import 'package:record_cataloguer/screens/manage_my_albums_screen.dart';
 import 'package:record_cataloguer/searchalbums/search_albums.dart';
 import 'package:record_cataloguer/widgets/add_album_widget.dart';
@@ -47,7 +49,11 @@ class _MyAlbumsScreenState extends State<MyAlbumsScreen> {
         centerTitle: true,
         title: const Text('My Albums'),
       ),
-      body: AlbumListWidget(albumList),
+      body: Consumer<AlbumListModel>(
+      builder: (context, albums, child){
+        return AlbumListWidget(albums);
+      }),
+
       drawer: Drawer(
         child: Container(
           color: Colors.blue,
