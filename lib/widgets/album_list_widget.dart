@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
-import 'package:record_cataloguer/data/album_list_data.dart';
 import 'package:record_cataloguer/model/album.dart';
 import 'package:record_cataloguer/model/album_list_model.dart';
 import 'package:record_cataloguer/style/base_font_sizes.dart';
@@ -17,9 +16,9 @@ import 'album_bottom_button_bar.dart';
 
 class AlbumListWidget extends StatefulWidget {
 
-  // final List<AlbumModel> albums;
-  // final AlbumListModel albums;
-  // const AlbumListWidget(this.albums, {Key? key}) : super(key: key);
+ //  final List<AlbumModel> albums;
+ // // final AlbumListModel albums;
+ //  const AlbumListWidget(this.albums, {Key? key}) : super(key: key);
 
   @override
   State<AlbumListWidget> createState() => _AlbumListWidgetState();
@@ -28,6 +27,9 @@ class AlbumListWidget extends StatefulWidget {
 class _AlbumListWidgetState extends State<AlbumListWidget> {
   @override
   Widget build(BuildContext context) {
+
+    // Var to hold the entire provider.
+    var albumListModel = context.watch<AlbumListModel>();
       return Stack(
         children: [
           ListView.builder(
@@ -52,14 +54,14 @@ class _AlbumListWidgetState extends State<AlbumListWidget> {
                                 height: 100.00,
                                 decoration: BoxDecoration(
                                   image: DecorationImage(
-                                    image: albums.albumList[index]
+                                    image: albumListModel.albumsList[index].toString() ==
                                         ''
                                         ? const ExactAssetImage(
-                                      'assets/images/no-image-available.svg.png',
+                                      '../../assets/images/no-image-available.svg.png',
                                       scale: 1,
                                     )
                                         : ExactAssetImage(
-                                      widget.albums.albumImageUrl,
+                                      albumListModel.albumsList[index].albumImageUrl,
                                       scale: 1,
                                     ),
                                   ),
@@ -74,8 +76,7 @@ class _AlbumListWidgetState extends State<AlbumListWidget> {
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   Text(
-                                    widget.albums.albumArtist
-                                        .toUpperCase(),
+                                    albumListModel.albumsList[index].albumArtist,
                                     textAlign: TextAlign.center,
                                     style: const TextStyle(
                                       fontSize: LARGE_GUTTER,
@@ -83,7 +84,7 @@ class _AlbumListWidgetState extends State<AlbumListWidget> {
                                     ),
                                   ),
                                   Text(
-                                    widget.albums.
+                                    albumListModel.albumsList[index].albumName
                                         .toUpperCase(),
                                     overflow: TextOverflow.ellipsis,
                                     style: const TextStyle(
@@ -105,7 +106,7 @@ class _AlbumListWidgetState extends State<AlbumListWidget> {
                                         padding: const EdgeInsets.all(
                                             EXTRA_SMALL_GUTTER),
                                         child: Text(
-                                          'x${widget.albums[index]
+                                          'x${albumListModel.albumsList[index]
                                               .albumQuantity}',
                                           style: TextStyle(
                                             fontSize: MEDIUM_FONT,
@@ -123,7 +124,7 @@ class _AlbumListWidgetState extends State<AlbumListWidget> {
                                           padding: const EdgeInsets.all(
                                               EXTRA_SMALL_GUTTER),
                                           child: Text(
-                                            '\$${widget.albums[index].albumPrice
+                                            '\$${albumListModel.albumsList[index].albumPrice
                                                 .toStringAsFixed(2)}',
                                             style: const TextStyle(
                                               fontWeight: FontWeight.bold,
@@ -136,7 +137,7 @@ class _AlbumListWidgetState extends State<AlbumListWidget> {
                                             EXTRA_SMALL_GUTTER),
                                         child: Text(
                                           DateFormat.yMMMd().format(
-                                              widget.albums[index].scannedDate),
+                                              albumListModel.albumsList[index].scannedDate),
                                           style: TextStyle(
                                             fontSize: MEDIUM_FONT,
                                             fontStyle: FontStyle.italic,
@@ -154,7 +155,7 @@ class _AlbumListWidgetState extends State<AlbumListWidget> {
                 ),
               );
             },
-            itemCount: albums.albums.length,
+            itemCount: albumListModel.albumsList.length,
           ),
           Positioned(
             bottom: SMALL_GUTTER,

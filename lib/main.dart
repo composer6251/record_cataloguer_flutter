@@ -13,10 +13,14 @@ import 'model/album.dart';
 ///ChangeNotifier
 ///
 
-void main() => runApp(ChangeNotifierProvider(
-    // register changeNotifier
-    create: (context) => AlbumListModel(albumList),
-    child: const MyApp()));
+void main() => runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => AlbumListModel(albumList)),
+      ],
+      // register changeNotifier
+      child: const MyApp(),
+    ));
 
 class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);

@@ -20,7 +20,7 @@ class _MyAlbumsScreenState extends State<MyAlbumsScreen> {
 
   void navigateToManageMyAlbums(BuildContext ctx) {
     Navigator.of(ctx).push(MaterialPageRoute(builder: (_) {
-      return ManageMyAlbumsScreen();
+      return Container();//ManageMyAlbumsScreen();
     }));
   }
 
@@ -49,11 +49,7 @@ class _MyAlbumsScreenState extends State<MyAlbumsScreen> {
         centerTitle: true,
         title: const Text('My Albums'),
       ),
-      body: Consumer<AlbumListModel>(
-      builder: (context, albums, child){
-        return AlbumListWidget(albums);
-      }),
-
+      body: AlbumListWidget(),
       drawer: Drawer(
         child: Container(
           color: Colors.blue,

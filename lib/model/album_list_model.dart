@@ -2,6 +2,7 @@ import 'dart:collection';
 
 import 'package:flutter/cupertino.dart';
 import 'package:record_cataloguer/model/album.dart';
+import 'package:record_cataloguer/widgets/album_list_widget.dart';
 
 /***
  * Instantiates ListView which accepts List<AlbumModel>
@@ -14,10 +15,7 @@ class AlbumListModel extends ChangeNotifier {
 
   AlbumListModel(this._albums);
 
-  //Instantiates ListView which accepts List<AlbumModel>
-  // UnmodifiableListView<AlbumModel> get albums => UnmodifiableListView(_albums);
-
-  get albumList => _albums;
+  get albumsList => _albums;
 
   // CRUD ops
   void add(AlbumModel album) {

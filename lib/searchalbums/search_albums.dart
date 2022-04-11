@@ -39,12 +39,14 @@ class SearchAlbums extends SearchDelegate {
   @override
   Widget buildResults(BuildContext context) {
     List<AlbumModel> searchedAlbums = albumList.where((album) => album.albumName.toLowerCase().contains(query.toLowerCase())).toList();
-    return AlbumListWidget(searchedAlbums);
+    return Container();
+     // AlbumListWidget(searchedAlbums);
   }
 
   @override
   Widget buildSuggestions(BuildContext context) {
     List<AlbumModel> testAlbums = albumList.where((album) => album.albumName.toLowerCase().contains(query.toLowerCase()) || album.albumArtist.toLowerCase().contains(query.toLowerCase())).toList();
-    return AlbumListWidget(testAlbums);
+    return Container();
+      //AlbumListWidget(testAlbums);
   }
 }
