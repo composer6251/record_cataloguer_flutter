@@ -26,7 +26,7 @@ import 'package:record_cataloguer/model/album.dart';
         upc: BigInt.from(123456),
         scannedDate: DateTime.now()),
     AlbumModel(
-        albumImageUrl: '',
+        albumImageUrl: NO_IMAGE_AVAILABLE,
         albumArtist: 'Synthery',
         albumName: 'Synthery',
         albumPrice: 35.00,

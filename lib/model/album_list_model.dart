@@ -1,8 +1,6 @@
-import 'dart:collection';
 
 import 'package:flutter/cupertino.dart';
 import 'package:record_cataloguer/model/album.dart';
-import 'package:record_cataloguer/widgets/album_list_widget.dart';
 
 /***
  * Instantiates ListView which accepts List<AlbumModel>
@@ -19,7 +17,6 @@ class AlbumListModel extends ChangeNotifier {
 
   // CRUD ops
   void add(AlbumModel album) {
-    print('adding album: ' + album.albumArtist);
     // insert at beginning
     _albums.insert(0, album);
     notifyListeners();

@@ -1,18 +1,21 @@
 import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:record_cataloguer/data/album_list_data.dart';
 import 'package:record_cataloguer/model/album_list_model.dart';
 import 'package:record_cataloguer/screens/my_albums_screen.dart';
-import 'data/album_list_data.dart';
 
-import 'model/album.dart';
+import 'data/album_list_data.dart';
 
 ///PROVIDERS
 ///Model is the ChangeNotifier
 ///ChangeNotifier
 ///
 
+// BECAUSE THE showModalBottomSheet IS ON THE MATERIAL APP WIDGET,
+// CHANGE NOTIFIER PROVIDER FOR ALBUMLIST MUST BE HERE. UNLESS
+// YOU WANT TO CHANGE WHAT YOU ARE USING FOR THE ADD ALBUM SECTION
 void main() => runApp(MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => AlbumListModel(albumList)),
@@ -43,13 +46,7 @@ class _MyAppState extends State<MyApp> {
                 fontWeight: FontWeight.bold,
               ),
             )),
-        home: MultiProvider(
-          providers: [
-            ChangeNotifierProvider(
-                // NotifierProvider goes on the PARENT of the child/children that need the data
-                create: (context) => AlbumListModel(albumList)),
-          ],
-          child: MyAlbumsScreen(),
-        ));
+        home: MyAlbumsScreen(),
+        );
   }
 }

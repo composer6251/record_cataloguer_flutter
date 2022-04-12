@@ -4,20 +4,22 @@ import 'package:record_cataloguer/model/album_list_model.dart';
 import 'package:record_cataloguer/widgets/add_album_widget.dart';
 
 class BottomButtonBar extends StatelessWidget {
-
   const BottomButtonBar({Key? key}) : super(key: key);
 
   openAddAlbumModal(BuildContext ctx) {
-    showModalBottomSheet(clipBehavior: Clip.hardEdge, context: ctx, builder: (_) {
-      return AddAlbumWidget();
-    },);
+    showModalBottomSheet(
+      clipBehavior: Clip.hardEdge,
+      context: ctx,
+      builder: (_) {
+        return AddAlbumWidget();
+      },
+    );
   }
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<AlbumListModel>(
-      builder: (context, albums, child) {
-        return  Row(
+    return Consumer<AlbumListModel>(builder: (context, albums, child) {
+      return Row(
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
@@ -39,9 +41,7 @@ class BottomButtonBar extends StatelessWidget {
               Icons.add,
               size: 25,
             ),
-            onPressed: () => {
-              openAddAlbumModal(context)
-            },
+            onPressed: () => {openAddAlbumModal(context)},
             style: ElevatedButton.styleFrom(
               primary: Colors.green,
               shape: const CircleBorder(),
@@ -64,7 +64,6 @@ class BottomButtonBar extends StatelessWidget {
           ),
         ],
       );
-      }
-    );
+    });
   }
 }

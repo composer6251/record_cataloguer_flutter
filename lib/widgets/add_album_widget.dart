@@ -1,9 +1,7 @@
-import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
-import 'package:record_cataloguer/data/album_list_data.dart';
 import 'package:record_cataloguer/model/album.dart';
 import 'package:record_cataloguer/model/album_list_model.dart';
 
@@ -19,38 +17,17 @@ class AddAlbumWidget extends StatefulWidget {
 
 class _AddAlbumWidgetState extends State<AddAlbumWidget> {
   showAlertDialog(BuildContext ctx) {
+    print('showing alert dialog');
     AlertDialog alert = const AlertDialog(
       title: Text('Error'),
       content: Text(
           'Please complete both Artist and Album fields before submitting'),
     );
-
     showDialog(
         context: ctx,
         builder: (BuildContext context) {
           return alert;
         });
-  }
-
-  void _addNewAlbum(String artist, String album, DateTime date) {
-    print('adding new album: ' + artist);
-    if (artist == '' || album == '') {
-      // todo: Save input text if erroring out
-      showAlertDialog(context);
-      return;
-    }
-    final newAlbum = AlbumModel(
-        albumImageUrl: '',
-        albumArtist: artist,
-        albumName: album,
-        albumPrice: 0,
-        albumQuantity: 1,
-        upc: BigInt.from(0),
-        scannedDate: date);
-
-    setState(() {
-      albumList.insert(0, newAlbum);
-    });
   }
 
   final _artistNameController = TextEditingController();
@@ -81,7 +58,6 @@ class _AddAlbumWidgetState extends State<AddAlbumWidget> {
             child: TextField(
               autofocus: true,
               decoration: const InputDecoration(
-                  //          fillColor: Theme.of(context).primaryColorDark,
                   labelText: 'Artist',
                   floatingLabelStyle: TextStyle(fontFamily: 'Times New Roman')),
               controller: _artistNameController,
@@ -110,17 +86,21 @@ class _AddAlbumWidgetState extends State<AddAlbumWidget> {
               ],
             ),
           ),
-          Flexible(
+          Flexible( // todo: pull anon into named function
             child: ElevatedButton(
-              onPressed: () =>
-                  albums.add(AlbumModel(
+              onPressed: () {
+                (_artistNameController.text == '' ||
+                      _albumNameController.text == '')
+                  ? showAlertDialog(context)
+                  : albums.add(AlbumModel(
                       albumImageUrl: '',
                       albumArtist: _artistNameController.text,
                       albumName: _albumNameController.text,
                       albumPrice: 0.00,
                       albumQuantity: 1,
                       upc: BigInt.zero,
-                      scannedDate: _selectedDate)),
+                      scannedDate: _selectedDate));
+              },
               child: const Text("Submit"),
             ),
           ),
