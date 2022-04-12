@@ -19,7 +19,9 @@ class AlbumListModel extends ChangeNotifier {
 
   // CRUD ops
   void add(AlbumModel album) {
-    _albums.add(album);
+    print('adding album: ' + album.albumArtist);
+    // insert at beginning
+    _albums.insert(0, album);
     notifyListeners();
   }
   // add all

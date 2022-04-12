@@ -2,14 +2,15 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 import 'package:record_cataloguer/data/album_list_data.dart';
 import 'package:record_cataloguer/model/album.dart';
+import 'package:record_cataloguer/model/album_list_model.dart';
 
 /***
  * This class is used to manually enter an album if scanning fails. It should still reach out to EBAY....etc to get album info.
  */
 class AddAlbumWidget extends StatefulWidget {
-
   AddAlbumWidget({Key? key}) : super(key: key);
 
   @override
@@ -17,7 +18,6 @@ class AddAlbumWidget extends StatefulWidget {
 }
 
 class _AddAlbumWidgetState extends State<AddAlbumWidget> {
-
   showAlertDialog(BuildContext ctx) {
     AlertDialog alert = const AlertDialog(
       title: Text('Error'),
@@ -61,67 +61,71 @@ class _AddAlbumWidgetState extends State<AddAlbumWidget> {
 
   void _initializeDatePicker() {
     showDatePicker(
-        context: context,
-        initialDate: DateTime.now(),
-        firstDate: DateTime(2022),
-        lastDate: DateTime.now()
-    ).then((pickedDate) => {
-      setState(() {
-      _selectedDate = pickedDate!;
-      }),
-    });
+            context: context,
+            initialDate: DateTime.now(),
+            firstDate: DateTime(2022),
+            lastDate: DateTime.now())
+        .then((pickedDate) => {
+              setState(() {
+                _selectedDate = pickedDate!;
+              }),
+            });
   }
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Flexible(
-          child: TextField(
-            autofocus: true,
-            decoration: const InputDecoration(
-  //          fillColor: Theme.of(context).primaryColorDark,
-              labelText: 'Artist',
-              floatingLabelStyle: TextStyle(
-              fontFamily: 'Times New Roman'
-            )),
-            controller: _artistNameController,
-          ),
-        ),
-        Flexible(
-          child: TextField(
-            decoration: const InputDecoration(
-              labelText: 'Album',
-              floatingLabelStyle: TextStyle(
-                  fontFamily: 'Times New Roman',
-              ),
-              floatingLabelBehavior: FloatingLabelBehavior.auto
+    return Consumer<AlbumListModel>(builder: (context, albums, child) {
+      return Column(
+        children: [
+          Flexible(
+            child: TextField(
+              autofocus: true,
+              decoration: const InputDecoration(
+                  //          fillColor: Theme.of(context).primaryColorDark,
+                  labelText: 'Artist',
+                  floatingLabelStyle: TextStyle(fontFamily: 'Times New Roman')),
+              controller: _artistNameController,
             ),
-            controller: _albumNameController,
           ),
-        ),
-        Flexible(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text('Date Entered:  ${DateFormat.yMd().format(_selectedDate)}'),
-              TextButton(
-                  onPressed: _initializeDatePicker,
-                  child: const Icon(Icons.calendar_today_outlined)
-              ),
-            ],
+          Flexible(
+            child: TextField(
+              decoration: const InputDecoration(
+                  labelText: 'Album',
+                  floatingLabelStyle: TextStyle(
+                    fontFamily: 'Times New Roman',
+                  ),
+                  floatingLabelBehavior: FloatingLabelBehavior.auto),
+              controller: _albumNameController,
+            ),
           ),
-        ),
-        Flexible(
-          child: ElevatedButton(
-            onPressed: () =>
-             // widget.addNewAlbum, //todo: For API Testing
-              _addNewAlbum(_artistNameController.text, _albumNameController.text, _selectedDate),
-              // FocusManager.instance.primaryFocus?.unfocus();
-            child: const Text("Submit"),
+          Flexible(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                    'Date Entered:  ${DateFormat.yMd().format(_selectedDate)}'),
+                TextButton(
+                    onPressed: _initializeDatePicker,
+                    child: const Icon(Icons.calendar_today_outlined)),
+              ],
+            ),
           ),
-        ),
-      ],
-    );
+          Flexible(
+            child: ElevatedButton(
+              onPressed: () =>
+                  albums.add(AlbumModel(
+                      albumImageUrl: '',
+                      albumArtist: _artistNameController.text,
+                      albumName: _albumNameController.text,
+                      albumPrice: 0.00,
+                      albumQuantity: 1,
+                      upc: BigInt.zero,
+                      scannedDate: _selectedDate)),
+              child: const Text("Submit"),
+            ),
+          ),
+        ],
+      );
+    });
   }
 }

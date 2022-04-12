@@ -50,3 +50,5 @@ import 'package:record_cataloguer/model/album.dart';
         upc: BigInt.from(123456),
         scannedDate: DateTime.now()),
   ];
+
+  const String NO_IMAGE_AVAILABLE = 'assets/images/no-image-available.svg.png';

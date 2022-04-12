@@ -68,51 +68,6 @@ class _MyAlbumsScreenState extends State<MyAlbumsScreen> {
           ),
         ),
       ),
-      // bottomNavigationBar: (
-      //     Row(
-      //   mainAxisAlignment: MainAxisAlignment.spaceAround,
-      //   children: [
-      //     ElevatedButton(
-      //       child: Icon(
-      //         Icons.add_a_photo,
-      //         size: 25,
-      //       ),
-      //       onPressed: () => {},
-      //       style: ElevatedButton.styleFrom(
-      //         primary: Colors.pink,
-      //         shape: const CircleBorder(),
-      //         padding: EdgeInsets.all(20),
-      //         elevation: 10,
-      //       ),
-      //     ),
-      //     ElevatedButton(
-      //       child: Icon(
-      //         Icons.add,
-      //         size: 25,
-      //       ),
-      //       onPressed: () => {openAddAlbumModal(context)},
-      //       style: ElevatedButton.styleFrom(
-      //         primary: Colors.green,
-      //         shape: const CircleBorder(),
-      //         padding: EdgeInsets.all(20),
-      //         elevation: 10,
-      //       ),
-      //     ),
-      //     ElevatedButton(
-      //       child: Icon(
-      //         Icons.delete,
-      //         size: 25,
-      //       ),
-      //       onPressed: () => {},
-      //       style: ElevatedButton.styleFrom(
-      //         primary: Colors.red,
-      //         shape: const CircleBorder(),
-      //         padding: EdgeInsets.all(20),
-      //         elevation: 10,
-      //       ),
-      //     ),
-      //   ],
-      // )),
     );
   }
 }

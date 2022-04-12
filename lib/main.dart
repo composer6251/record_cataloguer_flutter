@@ -13,8 +13,7 @@ import 'model/album.dart';
 ///ChangeNotifier
 ///
 
-void main() => runApp(
-    MultiProvider(
+void main() => runApp(MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => AlbumListModel(albumList)),
       ],
@@ -30,27 +29,27 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-
   @override
   Widget build(BuildContext context) {
-    // Album List State Hoisted
-
     return MaterialApp(
-      title: 'Record Cataloguer',
-      theme: ThemeData(
-          primarySwatch: Colors.blue,
-          fontFamily: 'OpenSans',
-          appBarTheme: const AppBarTheme(
-            titleTextStyle: TextStyle(
-              fontFamily: 'Quicksand',
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-            ),
-          )),
-      home: ChangeNotifierProvider( // NotifierProvider goes on the PARENT of the child/children that need the data
-        create: (context) => AlbumListModel(albumList),
-        child: MyAlbumsScreen(),
-      )
-    );
+        title: 'Record Cataloguer',
+        theme: ThemeData(
+            primarySwatch: Colors.blue,
+            fontFamily: 'OpenSans',
+            appBarTheme: const AppBarTheme(
+              titleTextStyle: TextStyle(
+                fontFamily: 'Quicksand',
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+            )),
+        home: MultiProvider(
+          providers: [
+            ChangeNotifierProvider(
+                // NotifierProvider goes on the PARENT of the child/children that need the data
+                create: (context) => AlbumListModel(albumList)),
+          ],
+          child: MyAlbumsScreen(),
+        ));
   }
 }
