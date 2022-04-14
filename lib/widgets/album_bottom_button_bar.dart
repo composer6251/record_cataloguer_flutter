@@ -49,6 +49,7 @@ class BottomButtonBar extends StatelessWidget {
               elevation: 10,
             ),
           ),
+          // todo: Make this a bulk delete button
           ElevatedButton(
             child: Icon(
               Icons.delete,

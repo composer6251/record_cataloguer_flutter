@@ -21,6 +21,11 @@ class AlbumListModel extends ChangeNotifier {
     _albums.insert(0, album);
     notifyListeners();
   }
+
+  void delete(int indexToDelete) {
+    _albums.removeAt(indexToDelete);
+    notifyListeners();
+  }
   // add all
 
 // delete

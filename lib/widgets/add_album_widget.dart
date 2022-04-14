@@ -92,8 +92,8 @@ class _AddAlbumWidgetState extends State<AddAlbumWidget> {
                 (_artistNameController.text == '' ||
                       _albumNameController.text == '')
                   ? showAlertDialog(context)
-                  : albums.add(AlbumModel(
-                      albumImageUrl: '',
+                  : albums.add(AlbumModel( // todo: find better way to do the image. Default in model? Or bring in picture here and default if no image url?
+                      albumImageUrl: '../assets/images/no-image-available.svg.png',
                       albumArtist: _artistNameController.text,
                       albumName: _albumNameController.text,
                       albumPrice: 0.00,

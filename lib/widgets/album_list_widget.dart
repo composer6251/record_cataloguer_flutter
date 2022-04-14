@@ -17,22 +17,32 @@ class AlbumListWidget extends StatefulWidget {
 }
 
 class _AlbumListWidgetState extends State<AlbumListWidget> {
+  // todo: Move to constants file
+  static const String ALBUM_LIST_INSTRUCTIONS =
+      'You do not have any albums in your portfolio. To get started adding, either: '
+      '\nTap the pink button with the camera icon to get started scanning or'
+      '\nTap the green button to manually enter album information.';
   @override
   Widget build(BuildContext context) {
     print('rebuilding album list widget');
     return Stack(children: [
       Consumer<AlbumListModel>(builder: (context, albums, child) {
-        return ListView.builder(
-          // Listview(children[]) does NOT create children lazily. Listview.builder() does create Lazily.
-          itemBuilder: (context, index) {
-            return ClipPath(
-              clipBehavior: Clip.hardEdge,
-              child:
-              AlbumCardWidget(index),
-            );
-          },
-          itemCount: albums.albumsList.length,
-        );
+        return albums.albumsList.isEmpty
+            ? Container(
+                child: Text(
+                  ALBUM_LIST_INSTRUCTIONS,
+                ),
+              )
+            : ListView.builder(
+                // Listview(children[]) does NOT create children lazily. Listview.builder() does create Lazily.
+                itemBuilder: (context, index) {
+                  return ClipPath(
+                    clipBehavior: Clip.hardEdge,
+                    child: AlbumCardWidget(index),
+                  );
+                },
+                itemCount: albums.albumsList.length,
+              );
       }),
       Positioned(
           bottom: SMALL_GUTTER,
@@ -41,113 +51,4 @@ class _AlbumListWidgetState extends State<AlbumListWidget> {
           child: BottomButtonBar()),
     ]);
   }
-
-  // Card AlbumCardWidget(int index) {
-  //   return Card(
-  //             elevation: 20,
-  //             child: Padding(
-  //               padding: const EdgeInsets.all(SMALL_GUTTER),
-  //               child: Consumer<AlbumListModel>(
-  //                   builder: (context, albums, child) {
-  //                 return Row(
-  //                   mainAxisSize: MainAxisSize.max,
-  //                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-  //                   children: [
-  //                     Flexible(
-  //                       flex: 1,
-  //                       child: Container(
-  //                         width: 100.00,
-  //                         height: 100.00,
-  //                         decoration: BoxDecoration(
-  //                           image: DecorationImage(
-  //                             image: albums.albumsList[index].toString() == ''
-  //                                 ? const ExactAssetImage(
-  //                               'assets/images/no-image-available.svg.png',
-  //                                     scale: 1,
-  //                                   )
-  //                                 : ExactAssetImage(
-  //                                     albums.albumsList[index].albumImageUrl,
-  //                                     scale: 1,
-  //                                   ),
-  //                           ),
-  //                         ),
-  //                       ),
-  //                     ),
-  //                     Flexible(
-  //                       flex: 1,
-  //                       child: Column(
-  //                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-  //                         crossAxisAlignment: CrossAxisAlignment.center,
-  //                         children: [
-  //                           Text(
-  //                             albums.albumsList[index].albumArtist,
-  //                             textAlign: TextAlign.center,
-  //                             style: const TextStyle(
-  //                               fontSize: LARGE_GUTTER,
-  //                               fontWeight: FontWeight.bold,
-  //                             ),
-  //                           ),
-  //                           Text(
-  //                             albums.albumsList[index].albumName
-  //                                 .toUpperCase(),
-  //                             overflow: TextOverflow.ellipsis,
-  //                             style: const TextStyle(
-  //                               fontSize: MEDIUM_GUTTER,
-  //                               fontStyle: FontStyle.italic,
-  //                             ),
-  //                           ),
-  //                         ],
-  //                       ),
-  //                     ),
-  //                     Flexible(
-  //                       flex: 1,
-  //                       child: Container(
-  //                           width: 100,
-  //                           alignment: Alignment.centerRight,
-  //                           child: Column(
-  //                             children: [
-  //                               Padding(
-  //                                 padding: const EdgeInsets.all(
-  //                                     EXTRA_SMALL_GUTTER),
-  //                                 child: Text(
-  //                                   'x${albums.albumsList[index].albumQuantity}',
-  //                                   style: TextStyle(
-  //                                     fontSize: MEDIUM_FONT,
-  //                                     fontWeight: FontWeight.bold,
-  //                                   ),
-  //                                 ),
-  //                               ),
-  //                               Container(
-  //                                 child: Padding(
-  //                                   padding: const EdgeInsets.all(
-  //                                       EXTRA_SMALL_GUTTER),
-  //                                   child: Text(
-  //                                     '\$${albums.albumsList[index].albumPrice.toStringAsFixed(2)}',
-  //                                     style: const TextStyle(
-  //                                       fontWeight: FontWeight.bold,
-  //                                     ),
-  //                                   ),
-  //                                 ),
-  //                               ),
-  //                               Padding(
-  //                                 padding: const EdgeInsets.all(
-  //                                     EXTRA_SMALL_GUTTER),
-  //                                 child: Text(
-  //                                   DateFormat.yMMMd().format(
-  //                                       albums.albumsList[index].scannedDate),
-  //                                   style: TextStyle(
-  //                                     fontSize: MEDIUM_FONT,
-  //                                     fontStyle: FontStyle.italic,
-  //                                   ),
-  //                                 ),
-  //                               ),
-  //                             ],
-  //                           )),
-  //                     )
-  //                   ],
-  //                 );
-  //               }),
-  //             ),
-  //           );
-  // }
 }
