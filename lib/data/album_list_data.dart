@@ -2,7 +2,7 @@ import 'package:record_cataloguer/model/album.dart';
 
   List<AlbumModel> albumList = [
      AlbumModel(
-        albumId: 1, // TODO: This only mocks a PK situation. Any New albums currently generate a new Id by referring to the albumlist.length + 1
+        albumId: ++primaryKeyCounter, // TODO: This only mocks a PK situation. Any New albums currently generate a new Id by referring to the albumlist.length + 1
         albumImageUrl: 'assets/images/diamond.png',
         albumArtist: 'Led Zeppelin',
         albumName: 'Led Zeppelin Four',
@@ -11,7 +11,7 @@ import 'package:record_cataloguer/model/album.dart';
         upc: BigInt.from(123456),
         scannedDate: DateTime.now()),
     AlbumModel(
-        albumId: 2,
+        albumId: ++primaryKeyCounter,
         albumImageUrl: 'assets/images/cat-stevens.jpeg',
         albumArtist: 'Cat Stevens',
         albumName: 'Tea for the Tilerman',
@@ -20,7 +20,7 @@ import 'package:record_cataloguer/model/album.dart';
         upc: BigInt.from(123456),
         scannedDate: DateTime.now()),
     AlbumModel(
-        albumId: 3,
+        albumId: ++primaryKeyCounter,
         albumImageUrl: 'assets/images/Pink Floyd The Wall.jpeg',
         albumArtist: 'Pink Floyd',
         albumName: 'The Wall',
@@ -29,7 +29,7 @@ import 'package:record_cataloguer/model/album.dart';
         upc: BigInt.from(123456),
         scannedDate: DateTime.now()),
     AlbumModel(
-        albumId: 4,
+        albumId: ++primaryKeyCounter,
         albumImageUrl: NO_IMAGE_AVAILABLE,
         albumArtist: 'Synthery',
         albumName: 'Synthery',
@@ -38,7 +38,7 @@ import 'package:record_cataloguer/model/album.dart';
         upc: BigInt.from(123456),
         scannedDate: DateTime.now()),
     AlbumModel(
-        albumId: 5,
+        albumId: ++primaryKeyCounter,
         albumImageUrl: 'assets/images/Beethoven.jpeg',
         albumArtist: 'Beethoven',
         albumName: 'Coriolan Overture',
@@ -47,7 +47,7 @@ import 'package:record_cataloguer/model/album.dart';
         upc: BigInt.from(123456),
         scannedDate: DateTime.now()),
     AlbumModel(
-        albumId: 6,
+        albumId: ++primaryKeyCounter,
         albumImageUrl: 'assets/images/diamond.png',
         albumArtist: 'Beatles',
         albumName: 'White Album',
@@ -56,5 +56,7 @@ import 'package:record_cataloguer/model/album.dart';
         upc: BigInt.from(123456),
         scannedDate: DateTime.now()),
   ];
+
+  int primaryKeyCounter = 0;
 
   const String NO_IMAGE_AVAILABLE = 'assets/images/no-image-available.svg.png';

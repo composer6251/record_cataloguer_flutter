@@ -12,8 +12,10 @@ class AlbumListModel extends ChangeNotifier {
   final List<AlbumModel> _albums;
   List<AlbumModel>? _searchedAlbums;
   bool _deleteMode = false;
+  int primaryKey;
+  List<int> albumsToDelete = [];
 
-  AlbumListModel(this._albums);
+  AlbumListModel(this._albums, this.primaryKey);
 
   get albumsList => _albums;
   get deleteMode => _deleteMode;
@@ -25,13 +27,19 @@ class AlbumListModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  void delete(int indexToDelete) {
-    _albums.removeAt(indexToDelete);
+  void delete(AlbumModel albumToDelete) {
+    _albums.remove(albumToDelete);
     notifyListeners();
   }
 
-  void setDeleteMode(bool mode){
-    _deleteMode = mode;
+  void setDeleteMode(){
+    _deleteMode = !_deleteMode;
+    notifyListeners();
+  }
+
+  void deleteBulk(){
+    print("removing bulk albums");
+    _albums.removeWhere((album) => albumsToDelete.contains(album.albumId));
     notifyListeners();
   }
 

@@ -6,28 +6,31 @@ import 'package:record_cataloguer/model/album_list_model.dart';
 import 'package:record_cataloguer/style/base_font_sizes.dart';
 import 'package:record_cataloguer/style/base_gutter_sizes.dart';
 
-
 /****
  * THIS CLASS IS A STATEFUL VERSION OF THE ALBUM_CARD_WIDGET. IT WAS CREATED TO HANDLE THE LOCAL STATE (CHECKBOX) THAT NEEDED UPDATING
  */
 class AlbumWidget extends StatefulWidget {
+  // takes current album in list from albumListWidget
   late AlbumModel album;
-  AlbumWidget(album, {Key? key}) : super(key: key);
+  AlbumWidget(this.album, {Key? key}) : super(key: key);
 
   @override
   _AlbumWidgetState createState() => _AlbumWidgetState();
 }
 
 class _AlbumWidgetState extends State<AlbumWidget> {
-
+  List albumsToDelete = [];
+  // upon check
+  bool isChecked = false;
   @override
   Widget build(BuildContext context) {
-    print('rebuilding album_widget. Album: ' + widget.album.albumId.toString());
+    print('rebuilding album_widget. Album: ' + widget.album.albumArtist);
     return Card(
       elevation: 20,
       child: Padding(
         padding: const EdgeInsets.all(SMALL_GUTTER),
-        child: Consumer<AlbumListModel>(builder: (context, albumListModel, child) {
+        child:
+            Consumer<AlbumListModel>(builder: (context, albumListModel, child) {
           return Container(
             //height: 80, // todo: Make card height a setting so more/less albums can fit on a page
             child: Row(
@@ -41,17 +44,15 @@ class _AlbumWidgetState extends State<AlbumWidget> {
                     height: 100.00,
                     decoration: BoxDecoration(
                       image: DecorationImage(
-                        image:
-                        // albums.albumsList[index].toString() == ''
-                        // ? const ExactAssetImage(
-                        //     'assets/images/no-image-available.svg.png', // todo: This is breaking upon generating the card because it can't find the image
-                        //     scale: 1,
-                        //   )
-                        // :
-                        ExactAssetImage(
-                          'assets/images/no-image-available.svg.png',
-                          scale: 1,
-                        ),
+                        image: widget.album.albumImageUrl == ''
+                            ? const ExactAssetImage(
+                                'assets/images/no-image-available.svg.png', // todo: This is breaking upon generating the card because it can't find the image
+                                scale: 1,
+                              )
+                            : ExactAssetImage(
+                                widget.album.albumImageUrl,
+                                scale: 1,
+                              ),
                       ),
                     ),
                   ),
@@ -128,10 +129,38 @@ class _AlbumWidgetState extends State<AlbumWidget> {
                   children: [
                     EditAlbumIconWidget(),
                     !albumListModel.deleteMode
-                        ? DeleteSingleAlbumWidget(albumListModel, widget.album.albumId)
-                        : DeleteBulkAlbumsCheckboxWidget(albumListModel, widget.album.albumId),
+                        ? Flexible(
+                            flex: 1,
+                            child: IconButton(
+                              onPressed: () =>
+                                  {albumListModel.delete(widget.album)},
+                              icon: Icon(
+                                Icons.delete,
+                                color: Colors.red,
+                              ),
+                            ),
+                          )
+                        : Flexible(
+                            flex: 1,
+                            child: Checkbox(
+                              checkColor: Colors.white,
+                              value: albumListModel.albumsToDelete.isEmpty
+                                  ? false // if the albumsToDelete is empty, then the bulk delete has just occurred
+                                  : isChecked,
+                              onChanged: (bool? value) {
+                                setState(() {
+                                  isChecked = value!;
+                                });
+                                isChecked
+                                    ? albumListModel.albumsToDelete
+                                        .add(widget.album.albumId)
+                                    : albumListModel.albumsToDelete
+                                        .remove(widget.album.albumId);
+                              },
+                            ),
+                          ),
                   ],
-                )
+                ),
               ],
             ),
           );
@@ -141,6 +170,8 @@ class _AlbumWidgetState extends State<AlbumWidget> {
   }
 }
 
+// todo: Can you make these into their own methods, or do they need to be in the tree directly in order to call setState? Or can you return the values?
+// todo: Add to delete list in the method, and in the onChanged above, do set State?
 Flexible EditAlbumIconWidget() {
   return Flexible(
     flex: 1,
@@ -153,11 +184,12 @@ Flexible EditAlbumIconWidget() {
   );
 }
 
-Flexible DeleteSingleAlbumWidget(AlbumListModel albumListModel, int indexToDelete) {
+Flexible DeleteSingleAlbumWidget(
+    AlbumListModel albumListModel, int indexToDelete) {
   return Flexible(
     flex: 1,
     child: IconButton(
-      onPressed: () => {albumListModel.delete(indexToDelete)},
+      onPressed: () => {},
       icon: Icon(
         Icons.delete,
         color: Colors.red,
@@ -181,7 +213,12 @@ Flexible DeleteBulkAlbumsCheckboxWidget(AlbumListModel albums, int index) {
       onChanged: (bool? value) {
         isChecked = !value!;
         isChecked ? albumsToDelete.add(index) : albumsToDelete.remove(index);
-        print('changing checkbox isChecked: ' + value.toString() +  ' ' + isChecked.toString() + ' and index: ' + index.toString());
+        print('changing checkbox isChecked: ' +
+            value.toString() +
+            ' ' +
+            isChecked.toString() +
+            ' and index: ' +
+            index.toString());
         // call albumListModel directly and pass in albumsToDelete
         //
       },

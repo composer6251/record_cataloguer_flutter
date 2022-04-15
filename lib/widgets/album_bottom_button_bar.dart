@@ -53,12 +53,22 @@ class BottomButtonBar extends StatelessWidget {
           // todo: Make this a bulk delete button
           // todo: add select all to mass delete. Should I make this ONLY on search? So noone inadvertantly deletes ALL their albums
           ElevatedButton(
-            child: Icon(
-              Icons.delete,
-              size: 25,
-            ),
+            child: albums.deleteMode
+                ? Icon(
+                    Icons.check_circle,
+                    size: 25,
+                  )
+                : Icon(
+                    Icons.delete,
+                    size: 25,
+                  ),
             onPressed: () => {
-              albums.setDeleteMode(!albums.deleteMode)
+              // if deleteMode is on and this is pressed, delete the albums, and switch deleteMode, and switch Icon on the button
+              if (albums.deleteMode)
+                  // todo: Show Confirmation message
+                  deleteBulk(albums)
+              else
+                albums.setDeleteMode()
             },
             style: ElevatedButton.styleFrom(
               primary: Colors.red,
@@ -71,4 +81,10 @@ class BottomButtonBar extends StatelessWidget {
       );
     });
   }
+}
+
+deleteBulk(AlbumListModel albumListModel) {
+  albumListModel.deleteBulk();
+  albumListModel.albumsToDelete.clear();
+  albumListModel.setDeleteMode();
 }

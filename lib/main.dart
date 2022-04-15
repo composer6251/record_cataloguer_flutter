@@ -18,7 +18,7 @@ import 'data/album_list_data.dart';
 // YOU WANT TO CHANGE WHAT YOU ARE USING FOR THE ADD ALBUM SECTION
 void main() => runApp(MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (context) => AlbumListModel(albumList)),
+        ChangeNotifierProvider(create: (context) => AlbumListModel(albumList, albumList.length)),
       ],
       // register changeNotifier
       child: const MyApp(),
