@@ -1,5 +1,5 @@
 /***
- * This holds the global styles for spacing between widgets
+ * This holds the global style for spacing between widgets
  */
 const double BASE_GUTTER_SIZE = 8.0;
 

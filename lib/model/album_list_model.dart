@@ -10,10 +10,13 @@ import 'package:record_cataloguer/model/album.dart';
 
 class AlbumListModel extends ChangeNotifier {
   final List<AlbumModel> _albums;
+  List<AlbumModel>? _searchedAlbums;
+  bool _deleteMode = false;
 
   AlbumListModel(this._albums);
 
   get albumsList => _albums;
+  get deleteMode => _deleteMode;
 
   // CRUD ops
   void add(AlbumModel album) {
@@ -26,9 +29,16 @@ class AlbumListModel extends ChangeNotifier {
     _albums.removeAt(indexToDelete);
     notifyListeners();
   }
-  // add all
 
-// delete
+  void setDeleteMode(bool mode){
+    _deleteMode = mode;
+    notifyListeners();
+  }
 
-// update
+  // SEARCH ops
+  // todo: Is it best to keep the searched albums here? You used to pass them into albumListWidget, but that now uses provider
+  void updateSearchedAlbums(){
+
+  }
+
 }

@@ -25,7 +25,7 @@ class _AlbumListWidgetState extends State<AlbumListWidget> {
   @override
   Widget build(BuildContext context) {
     print('rebuilding album list widget');
-    return Stack(children: [
+    return Stack(fit: StackFit.expand, children: [ // StackFit.expand tells widget to take up available space
       Consumer<AlbumListModel>(builder: (context, albums, child) {
         return albums.albumsList.isEmpty
             ? Container(
@@ -33,19 +33,19 @@ class _AlbumListWidgetState extends State<AlbumListWidget> {
                   ALBUM_LIST_INSTRUCTIONS,
                 ),
               )
-            : ListView.builder(
-                // Listview(children[]) does NOT create children lazily. Listview.builder() does create Lazily.
+            : ListView.builder( // todo: The BottomButtonBar obscures the last card on screen
                 itemBuilder: (context, index) {
                   return ClipPath(
                     clipBehavior: Clip.hardEdge,
-                    child: AlbumCardWidget(index),
+                    // child: AlbumCardWidget(albums.albumsList[index])
+                     child: AlbumCardWidget(index),
                   );
                 },
                 itemCount: albums.albumsList.length,
               );
       }),
       Positioned(
-          bottom: SMALL_GUTTER,
+          bottom: MEDIUM_GUTTER,
           left: 0, // left and right at 0 so width is full screen
           right: 0,
           child: BottomButtonBar()),

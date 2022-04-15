@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:record_cataloguer/data/album_list_data.dart';
 import 'package:record_cataloguer/model/album.dart';
@@ -16,6 +14,7 @@ class SearchAlbums extends SearchDelegate {
       onPressed: () => close(context, null), // close search bar
     );
   }
+
   @override
   List<Widget>? buildActions(BuildContext context) {
     return [
@@ -26,8 +25,7 @@ class SearchAlbums extends SearchDelegate {
         onPressed: () {
           if (query.isEmpty) {
             close(context, null);
-          }
-          else {
+          } else {
             query = '';
           }
         },
@@ -38,15 +36,20 @@ class SearchAlbums extends SearchDelegate {
   // Result calculated on submission
   @override
   Widget buildResults(BuildContext context) {
-    List<AlbumModel> searchedAlbums = albumList.where((album) => album.albumName.toLowerCase().contains(query.toLowerCase())).toList();
-    return Container();
-     // AlbumListWidget(searchedAlbums);
+    List<AlbumModel> searchedAlbums = albumList
+        .where((album) =>
+            album.albumName.toLowerCase().contains(query.toLowerCase()))
+        .toList();
+    return AlbumListWidget();
   }
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    List<AlbumModel> testAlbums = albumList.where((album) => album.albumName.toLowerCase().contains(query.toLowerCase()) || album.albumArtist.toLowerCase().contains(query.toLowerCase())).toList();
-    return Container();
-      //AlbumListWidget(testAlbums);
+    List<AlbumModel> testAlbums = albumList
+        .where((album) =>
+            album.albumName.toLowerCase().contains(query.toLowerCase()) ||
+            album.albumArtist.toLowerCase().contains(query.toLowerCase()))
+        .toList();
+    return AlbumListWidget();
   }
 }

@@ -1,9 +1,9 @@
-
 import 'package:flutter/cupertino.dart';
 
-class AlbumModel extends ChangeNotifier{
+class AlbumModel extends ChangeNotifier {
   // todo: Keep as image or make String for albumImage
-  late String albumImageUrl;
+  late int albumId;
+  late String? albumImageUrl;
   late String albumArtist;
   late String albumName;
   late double albumPrice;
@@ -12,7 +12,8 @@ class AlbumModel extends ChangeNotifier{
   late DateTime scannedDate;
 
   AlbumModel({
-    required this.albumImageUrl,
+    required this.albumId,
+    this.albumImageUrl,
     required this.albumArtist,
     required this.albumName,
     required this.albumPrice,
@@ -21,19 +22,18 @@ class AlbumModel extends ChangeNotifier{
     required this.scannedDate,
   });
 
-
-
   // factory method to parse response object to Album object from JSON
   // todo: Use correct JSON fields
   factory AlbumModel.fromJson(Map<String, dynamic> json) {
     return AlbumModel(
+      albumId: 0,
       albumImageUrl: '',
-        albumArtist: json['artist'],
-        albumName: json['name'],
-        albumPrice: json['price'],
-        albumQuantity: 0,
-        upc: BigInt.zero,
-        scannedDate: DateTime.now(),
+      albumArtist: json['artist'],
+      albumName: json['name'],
+      albumPrice: json['price'],
+      albumQuantity: 0,
+      upc: BigInt.zero,
+      scannedDate: DateTime.now(),
     );
   }
 }
