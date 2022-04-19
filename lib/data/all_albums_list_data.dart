@@ -1,6 +1,6 @@
 import 'package:record_cataloguer/model/album.dart';
 
-  List<AlbumModel> albumList = [
+  List<AlbumModel> allAlbumsList = [
      AlbumModel(
         albumId: ++primaryKeyCounter, // TODO: This only mocks a PK situation. Any New albums currently generate a new Id by referring to the albumlist.length + 1
         albumImageUrl: 'assets/images/diamond.png',

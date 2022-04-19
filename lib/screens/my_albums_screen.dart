@@ -1,12 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:english_words/english_words.dart';
-import 'package:provider/provider.dart';
-import 'package:record_cataloguer/data/album_list_data.dart';
-import 'package:record_cataloguer/model/album.dart';
-import 'package:record_cataloguer/model/album_list_model.dart';
-import 'package:record_cataloguer/screens/manage_my_albums_screen.dart';
 import 'package:record_cataloguer/searchalbums/search_albums.dart';
-import 'package:record_cataloguer/widgets/add_album_widget.dart';
 import 'package:record_cataloguer/widgets/album_list_widget.dart';
 
 class MyAlbumsScreen extends StatefulWidget {

@@ -3,7 +3,7 @@
 // import 'package:flutter/material.dart';
 // import 'package:intl/intl.dart';
 // import 'package:provider/provider.dart';
-// import 'package:record_cataloguer/model/album_list_model.dart';
+// import 'package:record_cataloguer/model/all_albums_list_provider.dart';
 // import 'package:record_cataloguer/style/base_font_sizes.dart';
 // import 'package:record_cataloguer/style/base_gutter_sizes.dart';
 //

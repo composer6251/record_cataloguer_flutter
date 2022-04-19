@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:record_cataloguer/model/album_list_model.dart';
+import 'package:record_cataloguer/provider/all_albums_list_provider.dart';
+import 'package:record_cataloguer/style/base_font_sizes.dart';
 import 'package:record_cataloguer/widgets/add_album_widget.dart';
 
 class BottomButtonBar extends StatelessWidget {
@@ -50,33 +51,63 @@ class BottomButtonBar extends StatelessWidget {
               elevation: 10,
             ),
           ),
-          // todo: Make this a bulk delete button
-          // todo: add select all to mass delete. Should I make this ONLY on search? So noone inadvertantly deletes ALL their albums
-          ElevatedButton(
-            child: albums.deleteMode
-                ? Icon(
-                    Icons.check_circle,
-                    size: 25,
-                  )
-                : Icon(
-                    Icons.delete,
-                    size: 25,
-                  ),
-            onPressed: () => {
-              // if deleteMode is on and this is pressed, delete the albums, and switch deleteMode, and switch Icon on the button
-              if (albums.deleteMode)
-                  // todo: Show Confirmation message
-                  deleteBulk(albums)
-              else
-                albums.setDeleteMode()
-            },
-            style: ElevatedButton.styleFrom(
-              primary: Colors.red,
-              shape: const CircleBorder(),
-              padding: EdgeInsets.all(20),
-              elevation: 10,
+          if (!albums.bulkSelectMode)
+            ElevatedButton(
+              child: Text(
+                'Edit',
+                style: TextStyle(
+                  fontSize: MEDIUM_FONT,
+                ),
+              ),
+              onPressed: () => {albums.setBulkSelectMode()},
+              style: ElevatedButton.styleFrom(
+                primary: Colors.blue,
+                shape: const CircleBorder(),
+                padding: EdgeInsets.all(20),
+                elevation: 10,
+              ),
             ),
-          ),
+          if (albums.bulkSelectMode)
+            ElevatedButton(
+              child: Icon(
+                Icons.bookmark,
+                size: 25,
+              ),
+              onPressed: () => {
+                // if bulkSelectMode is on and this is pressed, create the list and switch bulkUpdateMode
+                if (albums.albumCollection.isNotEmpty)
+                  // todo: Show Confirmation message
+                  albums.createAlbumList()
+                else
+                  albums.setBulkSelectMode()
+              },
+              style: ElevatedButton.styleFrom(
+                primary: Colors.blue,
+                shape: const CircleBorder(),
+                padding: EdgeInsets.all(20),
+                elevation: 10,
+              ),
+            ),
+          if (albums.bulkSelectMode)
+            ElevatedButton(
+              child: const Icon(
+                Icons.delete,
+                size: 25,
+              ),
+              onPressed: () => {
+                // if deleteMode is on and this is pressed, delete the albums, and switch deleteMode, and switch Icon on the button
+                if (albums.albumCollection.isNotEmpty)
+                  albums.deleteBulk()
+                else
+                  albums.setBulkSelectMode()
+              },
+              style: ElevatedButton.styleFrom(
+                primary: Colors.red,
+                shape: const CircleBorder(),
+                padding: EdgeInsets.all(20),
+                elevation: 10,
+              ),
+            ),
         ],
       );
     });
@@ -85,6 +116,8 @@ class BottomButtonBar extends StatelessWidget {
 
 deleteBulk(AlbumListModel albumListModel) {
   albumListModel.deleteBulk();
-  albumListModel.albumsToDelete.clear();
-  albumListModel.setDeleteMode();
+}
+
+createAlbumList(AlbumListModel albumListModel) {
+  albumListModel.deleteBulk();
 }

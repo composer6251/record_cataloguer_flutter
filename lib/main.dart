@@ -2,11 +2,11 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:record_cataloguer/data/album_list_data.dart';
-import 'package:record_cataloguer/model/album_list_model.dart';
+import 'package:record_cataloguer/data/all_albums_list_data.dart';
+import 'package:record_cataloguer/provider/all_albums_list_provider.dart';
 import 'package:record_cataloguer/screens/my_albums_screen.dart';
 
-import 'data/album_list_data.dart';
+import 'data/all_albums_list_data.dart';
 
 ///PROVIDERS
 ///Model is the ChangeNotifier
@@ -18,7 +18,7 @@ import 'data/album_list_data.dart';
 // YOU WANT TO CHANGE WHAT YOU ARE USING FOR THE ADD ALBUM SECTION
 void main() => runApp(MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (context) => AlbumListModel(albumList, albumList.length)),
+        ChangeNotifierProvider(create: (context) => AlbumListModel(allAlbumsList, allAlbumsList.length)),
       ],
       // register changeNotifier
       child: const MyApp(),

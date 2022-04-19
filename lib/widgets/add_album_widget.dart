@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:record_cataloguer/model/album.dart';
-import 'package:record_cataloguer/model/album_list_model.dart';
+import 'package:record_cataloguer/provider/all_albums_list_provider.dart';
 
 /***
  * This class is used to manually enter an album if scanning fails. It should still reach out to EBAY....etc to get album info.

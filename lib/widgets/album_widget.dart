@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:record_cataloguer/model/album.dart';
-import 'package:record_cataloguer/model/album_list_model.dart';
+import 'package:record_cataloguer/provider/all_albums_list_provider.dart';
 import 'package:record_cataloguer/style/base_font_sizes.dart';
 import 'package:record_cataloguer/style/base_gutter_sizes.dart';
 
@@ -22,6 +21,9 @@ class _AlbumWidgetState extends State<AlbumWidget> {
   List albumsToDelete = [];
   // upon check
   bool isChecked = false;
+
+  var _ratingController;
+
   @override
   Widget build(BuildContext context) {
     print('rebuilding album_widget. Album: ' + widget.album.albumArtist);
@@ -110,25 +112,25 @@ class _AlbumWidgetState extends State<AlbumWidget> {
                               ),
                             ),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.all(EXTRA_SMALL_GUTTER),
-                            child: Text(
-                              DateFormat.yMMMd()
-                                  .format(widget.album.scannedDate),
-                              style: TextStyle(
-                                fontStyle: FontStyle.italic,
-                              ),
-                            ),
-                          ),
+                          // todo: PUT RATING BAR IN ITS PLACE
+                          // Padding(
+                          //   padding: const EdgeInsets.all(EXTRA_SMALL_GUTTER),
+                          //   child: Text(
+                          //     DateFormat.yMMMd()
+                          //         .format(widget.album.scannedDate),
+                          //     style: TextStyle(
+                          //       fontStyle: FontStyle.italic,
+                          //     ),
+                          //   ),
+                          // ),
                         ],
                       )),
                 ),
                 Column(
                   mainAxisSize: MainAxisSize.min,
-                  //  mainAxisAlignment: MainAxisAlignment.center, not necessary since mainaxissize is min
                   children: [
                     EditAlbumIconWidget(),
-                    !albumListModel.deleteMode
+                    !albumListModel.bulkSelectMode
                         ? Flexible(
                             flex: 1,
                             child: IconButton(
@@ -144,18 +146,19 @@ class _AlbumWidgetState extends State<AlbumWidget> {
                             flex: 1,
                             child: Checkbox(
                               checkColor: Colors.white,
-                              value: albumListModel.albumsToDelete.isEmpty
-                                  ? false // if the albumsToDelete is empty, then the bulk delete has just occurred
+                              value: albumListModel.albumCollection.isEmpty
+                                  ? false // if the albumCollection is empty, then the bulk delete/collection creation has just occurred
                                   : isChecked,
                               onChanged: (bool? value) {
+                                print('checkbox on change value: ' + isChecked.toString());
                                 setState(() {
                                   isChecked = value!;
                                 });
                                 isChecked
-                                    ? albumListModel.albumsToDelete
-                                        .add(widget.album.albumId)
-                                    : albumListModel.albumsToDelete
-                                        .remove(widget.album.albumId);
+                                    ? albumListModel.userCollection1
+                                        .add(widget.album)
+                                    : albumListModel.userCollection1
+                                        .remove(widget.album);
                               },
                             ),
                           ),

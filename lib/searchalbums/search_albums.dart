@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:record_cataloguer/data/album_list_data.dart';
+import 'package:record_cataloguer/data/all_albums_list_data.dart';
 import 'package:record_cataloguer/model/album.dart';
 import 'package:record_cataloguer/widgets/album_list_widget.dart';
 
@@ -36,7 +36,7 @@ class SearchAlbums extends SearchDelegate {
   // Result calculated on submission
   @override
   Widget buildResults(BuildContext context) {
-    List<AlbumModel> searchedAlbums = albumList
+    List<AlbumModel> searchedAlbums = allAlbumsList
         .where((album) =>
             album.albumName.toLowerCase().contains(query.toLowerCase()))
         .toList();
@@ -45,7 +45,7 @@ class SearchAlbums extends SearchDelegate {
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    List<AlbumModel> testAlbums = albumList
+    List<AlbumModel> testAlbums = allAlbumsList
         .where((album) =>
             album.albumName.toLowerCase().contains(query.toLowerCase()) ||
             album.albumArtist.toLowerCase().contains(query.toLowerCase()))
