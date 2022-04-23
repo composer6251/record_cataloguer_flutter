@@ -1,0 +1,12 @@
+Architecture
+
+    Directory Structure
+        Should I refactor to have:
+            screens_dir
+                my_screen_dir
+                    my_screen.dart
+                        my_screen_widgets_dir
+                            my_screen_widget_1
+                            my_screen_widget_2
+
+    Should I have separate widgets for albumArtist and albumName

@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
-import 'package:record_cataloguer/model/album.dart';
+import 'package:record_cataloguer/models/album.dart';
 
 /***
- * This is the provider for the user lists created from their album catalogue by:
+ * This is the providers for the user lists created from their album catalogue by:
  * Manually adding albums to a list
  * Or grouped by album rating
  */

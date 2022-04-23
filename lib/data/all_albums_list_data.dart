@@ -1,4 +1,4 @@
-import 'package:record_cataloguer/model/album.dart';
+import 'package:record_cataloguer/models/album.dart';
 
   List<AlbumModel> allAlbumsList = [
      AlbumModel(

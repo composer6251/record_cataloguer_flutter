@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:record_cataloguer/data/all_albums_list_data.dart';
-import 'package:record_cataloguer/model/album.dart';
-import 'package:record_cataloguer/widgets/album_list_widget.dart';
+import 'package:record_cataloguer/models/album.dart';
+import 'package:record_cataloguer/widgets/album_collection/album_collection_widget.dart';
 
 class SearchAlbums extends SearchDelegate {
   // Handles return to page

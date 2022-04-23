@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:record_cataloguer/searchalbums/search_albums.dart';
-import 'package:record_cataloguer/widgets/album_list_widget.dart';
+import 'package:record_cataloguer/widgets/album_collection/album_collection_widget.dart';
+import 'package:record_cataloguer/widgets/search_albums_widget.dart';
 
 class MyAlbumsScreen extends StatefulWidget {
   const MyAlbumsScreen({Key? key}) : super(key: key);

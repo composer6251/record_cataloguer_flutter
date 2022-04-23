@@ -1,6 +1,6 @@
 
 import 'package:flutter/cupertino.dart';
-import 'package:record_cataloguer/model/album.dart';
+import 'package:record_cataloguer/models/album.dart';
 
 /***
  * Instantiates ListView which accepts List<AlbumModel>
@@ -15,7 +15,7 @@ class AlbumListModel extends ChangeNotifier {
   bool _createCollectionMode = false; // Creating collection Indicator
   int primaryKey;
   // List<int> albumCollectionIds = []; //was for deleting by id instead of object
-  List<AlbumModel> albumCollection = [];
+  List<AlbumModel> temporaryAlbumCollection = [];
   List<AlbumModel> userCollection1 = [];
 
   AlbumListModel(this._allAlbumsList, this.primaryKey);
@@ -25,12 +25,14 @@ class AlbumListModel extends ChangeNotifier {
 
   // CRUD ops
   void add(AlbumModel album) {
+    print('albums provider add single album');
     // insert at beginning
     _allAlbumsList.insert(0, album);
     notifyListeners();
   }
 
   void delete(AlbumModel albumToDelete) {
+    print('albums provider delete single album');
     _allAlbumsList.remove(albumToDelete);
     notifyListeners();
   }
@@ -42,18 +44,30 @@ class AlbumListModel extends ChangeNotifier {
   }
 
   void deleteBulk(){
+    validateCollection();
     print("removing bulk albums");
     _allAlbumsList.map((album) => delete(album));
+    setBulkSelectMode();
  //   _allAlbumsList.removeWhere((album) => albumCollectionIds.contains(album.albumId));
     notifyListeners();
   }
 
   // USER CREATING ALBUM LISTS
   void createAlbumList(){
+    validateCollection();
     print('creating new album list');
-    userCollection1 = albumCollection;
+    userCollection1 = temporaryAlbumCollection;
+    setBulkSelectMode();
     notifyListeners();
     print('created album collection of size: ' + userCollection1.length.toString());
+  }
+
+  void validateCollection() {
+    if(temporaryAlbumCollection.isEmpty){
+      print('no albums in collection for create or delete');
+      setBulkSelectMode();
+      notifyListeners();
+    }
   }
 
 }

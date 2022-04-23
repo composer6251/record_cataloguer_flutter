@@ -1,23 +1,26 @@
-
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
-import 'package:record_cataloguer/model/album.dart';
-import 'package:record_cataloguer/provider/all_albums_list_provider.dart';
+import 'package:record_cataloguer/models/album.dart';
+import 'package:record_cataloguer/providers/all_albums_list_provider.dart';
 
 /***
  * This class is used to manually enter an album if scanning fails. It should still reach out to EBAY....etc to get album info.
  */
 class AddAlbumWidget extends StatefulWidget {
-  AddAlbumWidget({Key? key}) : super(key: key);
+  const AddAlbumWidget({Key? key}) : super(key: key);
 
   @override
   State<AddAlbumWidget> createState() => _AddAlbumWidgetState();
 }
 
 class _AddAlbumWidgetState extends State<AddAlbumWidget> {
+  final _artistNameController = TextEditingController();
+  final _albumNameController = TextEditingController();
+
+  DateTime _selectedDate = DateTime.now();
+
   showAlertDialog(BuildContext ctx) {
-    print('showing alert dialog');
     AlertDialog alert = const AlertDialog(
       title: Text('Error'),
       content: Text(
@@ -29,12 +32,6 @@ class _AddAlbumWidgetState extends State<AddAlbumWidget> {
           return alert;
         });
   }
-
-  final _artistNameController = TextEditingController();
-
-  final _albumNameController = TextEditingController();
-
-  DateTime _selectedDate = DateTime.now();
 
   void _initializeDatePicker() {
     showDatePicker(
@@ -53,6 +50,7 @@ class _AddAlbumWidgetState extends State<AddAlbumWidget> {
   Widget build(BuildContext context) {
     return Consumer<AlbumListModel>(builder: (context, albums, child) {
       return Column(
+        // todo: Refactor to use form widget????
         children: [
           Flexible(
             child: TextField(
@@ -86,21 +84,24 @@ class _AddAlbumWidgetState extends State<AddAlbumWidget> {
               ],
             ),
           ),
-          Flexible( // todo: pull anon into named function
+          Flexible(
+            // todo: pull anon into named function
             child: ElevatedButton(
               onPressed: () {
                 (_artistNameController.text == '' ||
-                      _albumNameController.text == '')
-                  ? showAlertDialog(context)
-                  : albums.add(AlbumModel( // todo: find better way to do the image. Default in model? Or bring in picture here and default if no image url?
-                      albumId: ++albums.primaryKey,
-                      albumImageUrl: 'assets/images/no-image-available.svg.png',
-                      albumArtist: _artistNameController.text,
-                      albumName: _albumNameController.text,
-                      albumPrice: 0.00,
-                      albumQuantity: 1,
-                      upc: BigInt.zero,
-                      scannedDate: _selectedDate));
+                        _albumNameController.text == '')
+                    ? showAlertDialog(context)
+                    : albums.add(AlbumModel(
+                        // todo: find better way to do the image. Default in model? Or bring in picture here and default if no image url?
+                        albumId: ++albums.primaryKey,
+                        albumImageUrl:
+                            'assets/images/no-image-available.svg.png',
+                        albumArtist: _artistNameController.text,
+                        albumName: _albumNameController.text,
+                        albumPrice: 0.00,
+                        albumQuantity: 1,
+                        upc: BigInt.zero,
+                        scannedDate: _selectedDate));
               },
               child: const Text("Submit"),
             ),

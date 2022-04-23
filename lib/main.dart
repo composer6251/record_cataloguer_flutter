@@ -3,7 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:record_cataloguer/data/all_albums_list_data.dart';
-import 'package:record_cataloguer/provider/all_albums_list_provider.dart';
+import 'package:record_cataloguer/providers/all_albums_list_provider.dart';
 import 'package:record_cataloguer/screens/my_albums_screen.dart';
 
 import 'data/all_albums_list_data.dart';
