@@ -32,10 +32,9 @@ class _AlbumCheckBoxState extends State<AlbumCheckBox> {
         print('checkbox isChecked after setState: ' + isChecked.toString());
         isChecked
             ? Provider.of<AlbumListModel>(context, listen: false)
-                .userCollection1
-                .add(widget.album)
+                .addToTemporaryAlbumCollection(widget.album)
             : Provider.of<AlbumListModel>(context, listen: false)
-                .userCollection1
+                .temporaryAlbumCollection
                 .remove(widget.album);
       },
     );

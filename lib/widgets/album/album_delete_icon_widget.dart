@@ -15,7 +15,7 @@ class DeleteAlbumWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return IconButton(
       onPressed: () => {
-        Provider.of<AlbumListModel>(context, listen: false).delete(album) // The button doesn't need to rebuild, it just needs call the provider method
+        Provider.of<AlbumListModel>(context, listen: false).deleteAlbum(album) // The button doesn't need to rebuild, it just needs call the provider method
       },
       icon: const Icon(
         Icons.delete,

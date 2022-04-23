@@ -1,4 +1,3 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:record_cataloguer/models/album.dart';
 
@@ -14,7 +13,6 @@ class AlbumListModel extends ChangeNotifier {
   bool _bulkSelectMode = false; // Bulk delete indicator
   bool _createCollectionMode = false; // Creating collection Indicator
   int primaryKey;
-  // List<int> albumCollectionIds = []; //was for deleting by id instead of object
   List<AlbumModel> temporaryAlbumCollection = [];
   List<AlbumModel> userCollection1 = [];
 
@@ -31,43 +29,52 @@ class AlbumListModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  void delete(AlbumModel albumToDelete) {
+  void deleteAlbum(AlbumModel albumToDelete) {
     print('albums provider delete single album');
     _allAlbumsList.remove(albumToDelete);
     notifyListeners();
   }
 
-  void setBulkSelectMode(){
+  void setBulkSelectMode() {
     _bulkSelectMode = !_bulkSelectMode;
     print('bulkSelectMode set to ' + _bulkSelectMode.toString());
     notifyListeners();
   }
 
-  void deleteBulk(){
+  void deleteBulk() {
     validateCollection();
-    print("removing bulk albums");
-    _allAlbumsList.map((album) => delete(album));
+    print("removing bulk albums. temp album list size: " +
+        temporaryAlbumCollection.length.toString());
+    temporaryAlbumCollection.forEach((album) {
+      deleteAlbum(album);
+    });
+    _allAlbumsList.map((album) => deleteAlbum(album));
     setBulkSelectMode();
- //   _allAlbumsList.removeWhere((album) => albumCollectionIds.contains(album.albumId));
+    //   _allAlbumsList.removeWhere((album) => albumCollectionIds.contains(album.albumId));
     notifyListeners();
   }
 
   // USER CREATING ALBUM LISTS
-  void createAlbumList(){
+  void createAlbumList() {
     validateCollection();
     print('creating new album list');
     userCollection1 = temporaryAlbumCollection;
     setBulkSelectMode();
+    temporaryAlbumCollection = [];
     notifyListeners();
-    print('created album collection of size: ' + userCollection1.length.toString());
+    print('created album collection of size: ' +
+        userCollection1.length.toString());
   }
 
   void validateCollection() {
-    if(temporaryAlbumCollection.isEmpty){
+    if (temporaryAlbumCollection.isEmpty) {
       print('no albums in collection for create or delete');
       setBulkSelectMode();
       notifyListeners();
     }
   }
 
+  void addToTemporaryAlbumCollection(AlbumModel album) {
+    temporaryAlbumCollection.add(album);
+  }
 }

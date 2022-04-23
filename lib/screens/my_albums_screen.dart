@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:record_cataloguer/widgets/album_collection/album_collection_widget.dart';
+import 'package:record_cataloguer/widgets/main_navigation_drawer_widget.dart';
 import 'package:record_cataloguer/widgets/search_albums_widget.dart';
 
 class MyAlbumsScreen extends StatefulWidget {
@@ -43,24 +44,7 @@ class _MyAlbumsScreenState extends State<MyAlbumsScreen> {
         title: const Text('My Albums'),
       ),
       body: AlbumListWidget(),
-      drawer: Drawer(
-        child: Container(
-          color: Colors.blue,
-          child: ListView(
-            children: [
-              DrawerHeader(
-                child: Text('Navigation Menu'),
-              ),
-              ListTile(
-                title: Text('List Tile 1'),
-              ),
-              ListTile(
-                title: Text('List Tile 2'),
-              ),
-            ],
-          ),
-        ),
-      ),
+      drawer: const MainNavigationDrawer(),
     );
   }
 }

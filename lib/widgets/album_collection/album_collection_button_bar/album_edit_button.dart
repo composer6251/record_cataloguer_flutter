@@ -12,7 +12,7 @@ class AlbumEditButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      child: Text(
+      child: const Text(
         'Edit',
         style: TextStyle(
           fontSize: MEDIUM_FONT,

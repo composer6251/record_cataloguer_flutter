@@ -19,13 +19,13 @@ class BottomButtonBar extends StatelessWidget {
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          AlbumScanButton(),
-          AlbumAddButton(),
-          if (!albums.bulkSelectMode) AlbumEditButton(),
+          const AlbumScanButton(),
+          const AlbumAddButton(),
+          if (!albums.bulkSelectMode) const AlbumEditButton(),
           if (albums.bulkSelectMode)
-            AlbumCreateCollectionButton(),
+            const AlbumCreateCollectionButton(),
           if (albums.bulkSelectMode)
-            AlbumDeleteBulkButton(),
+            const AlbumDeleteBulkButton(),
         ],
       );
     });
