@@ -1,0 +1,55 @@
+import 'package:flutter/material.dart';
+import 'package:record_cataloguer/data/all_albums_list_data.dart';
+import 'package:record_cataloguer/models/album.dart';
+import 'package:record_cataloguer/widgets/album_collection/album_collection_widget.dart';
+
+class SearchAlbums extends SearchDelegate {
+  // Handles return to page
+  @override
+  Widget? buildLeading(BuildContext context) {
+    return IconButton(
+      icon: Icon(
+        Icons.arrow_back,
+      ),
+      onPressed: () => close(context, null), // close search bar
+    );
+  }
+
+  @override
+  List<Widget>? buildActions(BuildContext context) {
+    return [
+      IconButton(
+        icon: const Icon(
+          Icons.clear,
+        ),
+        onPressed: () {
+          if (query.isEmpty) {
+            close(context, null);
+          } else {
+            query = '';
+          }
+        },
+      )
+    ];
+  }
+
+  // Result calculated on submission
+  @override
+  Widget buildResults(BuildContext context) {
+    List<AlbumModel> searchedAlbums = allAlbumsList
+        .where((album) =>
+            album.albumName.toLowerCase().contains(query.toLowerCase()))
+        .toList();
+    return AlbumListWidget();
+  }
+
+  @override
+  Widget buildSuggestions(BuildContext context) {
+    List<AlbumModel> testAlbums = allAlbumsList
+        .where((album) =>
+            album.albumName.toLowerCase().contains(query.toLowerCase()) ||
+            album.albumArtist.toLowerCase().contains(query.toLowerCase()))
+        .toList();
+    return AlbumListWidget();
+  }
+}
