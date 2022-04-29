@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:record_cataloguer/services/ebay_service/ebay_service.dart';
+import 'package:record_cataloguer/api/services/ebay_service/ebay_service.dart';
 
 class ApiTestingScreen extends StatefulWidget {
   const ApiTestingScreen({Key? key}) : super(key: key);
@@ -17,16 +17,10 @@ class _ApiTestingScreenState extends State<ApiTestingScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          'Api Testing'
-        ),
+        title: const Text('Api Testing'),
       ),
       body: Column(
         children: [
-          // AddAlbumWidget( () => getEbayAuthorization() ),
-          // SizedBox(
-          //   height: 80,
-          // ),
           ElevatedButton(
             child: const Text('Test My Api Sandbox Authorization Endpoint'),
             onPressed: () => getEbayAuthorization(),
@@ -35,7 +29,7 @@ class _ApiTestingScreenState extends State<ApiTestingScreen> {
             child: const Text('Test Ebay Sandbox Authorization Endpoint'),
             onPressed: () => EbayService.getEbayAuthorizationToken(),
           ),
-      ],
+        ],
       ),
     );
   }
