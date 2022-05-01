@@ -50,7 +50,6 @@ class AlbumListModel extends ChangeNotifier {
     });
     _allAlbumsList.map((album) => deleteAlbum(album));
     setBulkSelectMode();
-    //   _allAlbumsList.removeWhere((album) => albumCollectionIds.contains(album.albumId));
     notifyListeners();
   }
 
